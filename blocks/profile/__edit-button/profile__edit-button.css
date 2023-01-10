@@ -5,6 +5,9 @@
   object-fit: cover;
   background-size: 100%;
   background-position: center;
+  position: absolute;
+  right: 0;
+  top: 25%;
 
   background-color: #000;
 }

@@ -1,19 +1,20 @@
-.photo-grid__wrapper {
-  max-width: 1184px;
-  margin: 0 48px;
-  margin-bottom: 92px;
+.cards {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 880px;
+
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(auto, 1fr);
-  grid-gap: 16px;
+  grid-gap: 17px;
   align-content: center;
   align-items: center;
   justify-items: center;
   justify-content: center;
 }
 
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
   .photo-grid__wrapper {
     max-width: 928px;
     grid-gap: 14px;
@@ -40,4 +41,4 @@
 
     grid-gap: 12px;
   }
-}
+} */
