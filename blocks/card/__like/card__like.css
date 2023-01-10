@@ -1,0 +1,10 @@
+.card__like {
+  position: absolute;
+  background: url(../../../images/svg/like.svg);
+  width: 22px;
+  height: 19px;
+  bottom: 34px;
+  right: 20px;
+  border: 0;
+  cursor: pointer;
+}

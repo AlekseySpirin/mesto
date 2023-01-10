@@ -1,0 +1,12 @@
+.pop-up__body {
+  margin: auto;
+  margin-top: 195px;
+  width: 356px;
+  height: 259px;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+}
