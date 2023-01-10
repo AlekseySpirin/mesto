@@ -1,0 +1,27 @@
+.copyright {
+  width: 30%;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: end;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 114%;
+  /* identical to box height, or 114% */
+
+  text-align: right;
+
+  color: #ffffff;
+}
+
+@media (max-width: 725px) {
+  .copyright {
+    width: 200px;
+    margin-top: 48px;
+    margin-bottom: 24px;
+
+    justify-content: start;
+  }
+}
