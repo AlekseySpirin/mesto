@@ -6,7 +6,9 @@
   left: 0;
   top: 0;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: transparent;
 
   z-index: 10;
+  transform: translate(0%, -30%) scale(0);
+  transition: 0.4s ease-in-out;
 }

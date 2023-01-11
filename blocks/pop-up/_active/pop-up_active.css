@@ -1,0 +1,4 @@
+.pop-up_active {
+  transform: translateY(0%) scale(100%);
+  background-color: rgba(0, 0, 0, 0.8);
+}

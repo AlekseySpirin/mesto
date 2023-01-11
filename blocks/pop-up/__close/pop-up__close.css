@@ -1,7 +1,15 @@
 .pop-up__close {
+  width: 32px;
+  height: 32px;
   position: absolute;
-  top: -20px;
-  right: -20px;
-  font-size: 20px;
+  background: url(../../../images/svg/close-icon.svg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  top: -40px;
+
+  right: -40px;
+  color: #fff;
   cursor: pointer;
+
+  z-index: 15;
 }
