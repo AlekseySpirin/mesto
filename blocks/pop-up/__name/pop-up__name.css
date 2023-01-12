@@ -1,4 +1,4 @@
-.pop-up__text {
+.pop-up__name {
   width: 358px;
   min-height: 27px;
   margin-bottom: 30px;
@@ -10,10 +10,6 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   color: #000000;
-}
-
-.pop-up__text:nth-child(2) {
-  margin-bottom: 0;
 }
 
 .pop-up__text:focus {
