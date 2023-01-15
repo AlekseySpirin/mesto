@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 63px;
   width: 282px;
   height: 361px;
   list-style: none;
