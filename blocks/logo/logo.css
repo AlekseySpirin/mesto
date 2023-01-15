@@ -1,13 +1,19 @@
 .logo {
-  width: 176px;
-  height: 52px;
-  max-width: 100%;
+  width: 142px;
+  height: 42px;
+  margin: 0;
   justify-self: start;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 915px) {
   .logo {
-    width: 142px;
-    height: 42px;
+    margin-left: 27px;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo {
+    width: 104px;
+    height: 25px;
   }
 }

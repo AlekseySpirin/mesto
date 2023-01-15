@@ -2,7 +2,7 @@
   width: 358px;
   min-height: 27px;
   margin-bottom: 30px;
-  font-family: "Inter";
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -14,4 +14,10 @@
 
 .pop-up__text:focus {
   outline: none;
+}
+
+@media (max-width: 375px) {
+  .pop-up__name {
+    width: 235px;
+  }
 }

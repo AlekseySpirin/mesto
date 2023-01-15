@@ -3,25 +3,8 @@
   margin: 66px auto 60px;
 }
 
-/* @media (max-width: 1024px) {
+@media (max-width: 375px) {
   .footer {
-    max-width: 928px;
+    margin-top: 48px;
   }
 }
-
-@media (max-width: 768px) {
-  .footer {
-    max-width: 720px;
-
-    margin: 88px 24px 24px 24px;
-  }
-}
-
-@media (max-width: 725px) {
-  .footer {
-    max-width: 288px;
-
-    margin: 64px auto 24px 16px;
-    flex-direction: column;
-  }
-} */

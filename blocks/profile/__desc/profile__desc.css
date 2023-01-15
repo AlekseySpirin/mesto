@@ -5,3 +5,10 @@
   position: relative;
   flex-wrap: wrap;
 }
+
+@media (max-width: 320px) {
+  .profile__desc {
+    max-width: 282px;
+    text-align: center;
+  }
+}

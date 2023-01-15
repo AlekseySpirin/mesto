@@ -1,6 +1,6 @@
 // pop-up
 
-let popUpOpen = document.querySelector(".pop-up__open");
+let popUpOpen = document.querySelector(".profile__edit-button");
 let popUpClose = document.querySelector(".pop-up__close");
 let popUp = document.querySelector(".pop-up");
 

@@ -3,26 +3,31 @@
   padding: 0;
   max-width: 880px;
 
-  position: relative;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, 282px);
   grid-template-rows: repeat(auto, 1fr);
   grid-gap: 17px;
+  grid-auto-flow: dense;
   align-content: center;
   align-items: center;
   justify-items: center;
   justify-content: center;
 }
 
-/* @media screen and (max-width: 1024px) {
-  .photo-grid__wrapper {
-    max-width: 928px;
-    grid-gap: 14px;
-    grid-template-columns: repeat(3, 1fr);
+@media screen and (max-width: 915px) {
+  .cards {
+    margin-left: 19px;
+    margin-right: 19px;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 375px) {
+  .cards {
+    grid-gap: 20px;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
   .photo-grid__wrapper {
     margin: 0 24px;
     max-width: 720px;

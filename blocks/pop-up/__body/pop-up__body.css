@@ -9,3 +9,12 @@
   padding: 35px;
   position: relative;
 }
+
+@media (max-width: 375px) {
+  .pop-up__body {
+    width: 238px;
+    height: 272px;
+    padding: 25px 22px;
+    margin-top: 123px;
+  }
+}

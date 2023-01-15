@@ -11,3 +11,17 @@
   border: 0;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .profile__add-button {
+    width: 282px;
+    background: url(../../../images/svg/add-button-mobile.svg) no-repeat;
+    position: relative;
+    margin-top: 36px;
+  }
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
