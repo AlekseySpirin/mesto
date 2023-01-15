@@ -14,40 +14,36 @@ popUpClose.addEventListener("click", function () {
 
 // submit
 
-let formElement = document.querySelector(".pop-up");
+let formElement = document.querySelector(".pop-up__body");
 let nameInput = formElement.querySelector(".pop-up__name");
 let jobInput = formElement.querySelector(".pop-up__job");
+let buttonSave = document.querySelector(".pop-up__button-save");
+
+nameInput.value = "Жак-Ив Кусто";
+jobInput.value = "Исследователь океана";
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  let profileName = document.querySelector(".profile__name");
-  let profileInfo = document.querySelector(".profile__info");
-  profileName.textContent = nameInput.value;
-  profileInfo.textContent = jobInput.value;
+  if (evt.submitter.classList.contains("pop-up__button-save")) {
+    let profileName = document.querySelector(".profile__name");
+    let profileInfo = document.querySelector(".profile__info");
+    profileName.textContent = nameInput.value;
+    profileInfo.textContent = jobInput.value;
+    popUp.classList.remove("pop-up_active");
+  }
 }
 
 formElement.addEventListener("submit", handleFormSubmit);
+
 //------------------------------------------------------------
-
-// button-save
-
-// let buttonSave = document.querySelector(".pop-up__button-save");
-
-// buttonSave.addEventListener("click", function () {
-//   popUp.classList.remove("pop-up_active");
-// });
-
-//------------------------------------------------------
-// сделать чтобы информация не сохранялась при нажатии на крестик
-// запретить применение функции при нажатии на close
 
 // like
 
 let like = document.querySelectorAll(".card__like");
 
 like.forEach(function (el) {
-  el.addEventListener("click", function (ev) {
-    ev.stopPropagation();
+  el.addEventListener("click", function (evt) {
+    evt.stopPropagation();
     this.classList.toggle("card__like_active");
   });
 });
