@@ -24,4 +24,4 @@
 
 3. Перевести всю логику активных (hover) действий в JS.
 
-https://alekseyspirin.github.io/russian-travel/
+https://alekseyspirin.github.io/mesto/
