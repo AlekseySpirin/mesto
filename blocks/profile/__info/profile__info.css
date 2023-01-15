@@ -7,10 +7,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  /* text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden; */
-
   color: #ffffff;
 }
 
@@ -19,7 +15,5 @@
     font-size: 14px;
     line-height: 17px;
     max-width: 282px;
-    /* text-overflow: clip;
-    white-space: normal; */
   }
 }

@@ -26,24 +26,3 @@
     grid-gap: 20px;
   }
 }
-
-/* @media screen and (max-width: 768px) {
-  .photo-grid__wrapper {
-    margin: 0 24px;
-    max-width: 720px;
-    grid-template-columns: repeat(2, 1fr);
-
-    margin-bottom: 88px;
-    grid-gap: 16px;
-  }
-}
-
-@media screen and (max-width: 390px) {
-  .photo-grid__wrapper {
-    margin: 0 16px;
-
-    grid-template-columns: repeat(1, 1fr);
-
-    grid-gap: 12px;
-  }
-} */
