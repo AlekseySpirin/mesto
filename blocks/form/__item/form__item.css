@@ -1,7 +1,4 @@
-.pop-up__name {
-  width: 358px;
-  min-height: 27px;
-  margin-bottom: 30px;
+.form__item {
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -12,12 +9,6 @@
   color: #000000;
 }
 
-.pop-up__text:focus {
+.form__item {
   outline: none;
-}
-
-@media (max-width: 375px) {
-  .pop-up__name {
-    width: 235px;
-  }
 }

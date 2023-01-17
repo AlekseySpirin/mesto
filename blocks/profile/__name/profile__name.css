@@ -10,6 +10,9 @@
   line-height: 48px;
   /* or 114% */
   color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
