@@ -9,6 +9,6 @@
   color: #000000;
 }
 
-.form__item {
+.form__item:focus {
   outline: none;
 }
