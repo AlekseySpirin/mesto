@@ -5,10 +5,11 @@
 
   background-size: 10px;
   background-position: center;
-  align-self: flex-start;
+
   justify-self: start;
-  margin-top: 33px;
+  align-self: center;
   cursor: pointer;
+  grid-area: edit-btn;
 
   background-color: #000;
   border: 1px solid #ffffff;
@@ -18,8 +19,7 @@
 
 @media (max-width: 768px) {
   .profile__edit-button {
-    grid-column: 2/-1;
-    margin-left: 10px;
+    justify-self: end;
   }
 }
 

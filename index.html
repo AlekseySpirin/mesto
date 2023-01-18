@@ -20,14 +20,15 @@
         <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар" />
 
         <div class="profile__desc">
+          <button
+            type="button"
+            class="profile__edit-button pop-up__open"
+          ></button>
           <h1 class="profile__name">Жак-Ив Кусто</h1>
 
           <p class="profile__info">Исследователь океана</p>
         </div>
-        <button
-          type="button"
-          class="profile__edit-button pop-up__open"
-        ></button>
+
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="places">
@@ -91,13 +92,17 @@
     </footer>
     <div class="pop-up pop-up_place_profile">
       <div class="pop-up__container">
-        <form action="#" class="form">
+        <form name="edit-profile" action="#" class="form">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input class="form__item form__item_el_name" type="text" />
-          <input class="form__item form__item_el_job" type="text" />
+          <input
+            name="name"
+            class="form__item form__item_el_name"
+            type="text"
+          />
+          <input name="job" class="form__item form__item_el_job" type="text" />
           <button type="submit" class="pop-up__button-save">Сохранить</button>
-          <button type="button" class="pop-up__close"></button>
         </form>
+        <button type="button" class="pop-up__close"></button>
       </div>
     </div>
 

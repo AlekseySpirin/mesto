@@ -1,5 +1,5 @@
 .pop-up_active {
-  display: block;
+  display: flex;
 
   /* transform: translateY(0%) scale(100%);
   background-color: rgba(0, 0, 0, 0.8); */

@@ -2,12 +2,12 @@
   width: 150px;
   height: 53px;
   background: url(../../../images/svg/plus.svg) no-repeat;
-
+  align-self: center;
   background-size: 22px;
   background-position: center;
   justify-self: flex-end;
   background-color: #000;
-
+  grid-area: add-btn;
   cursor: pointer;
   border: 2px solid #ffffff;
   border-radius: 2px;
@@ -17,8 +17,7 @@
   .profile__add-button {
     width: 282px;
 
-    margin-top: 36px;
-
+    align-self: start;
     grid-column: 1/-1;
     justify-self: center;
   }

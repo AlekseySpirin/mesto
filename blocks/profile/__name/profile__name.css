@@ -1,8 +1,8 @@
 .profile__name {
   margin: 0;
   padding: 0;
-  max-width: 294px;
-  margin-bottom: 7px;
+  max-width: 300px;
+
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -13,11 +13,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  grid-area: name;
+  align-self: center;
 }
 
 @media (max-width: 768px) {
   .profile__name {
-    margin-top: 26px;
+    margin-left: 25px;
   }
 }
 

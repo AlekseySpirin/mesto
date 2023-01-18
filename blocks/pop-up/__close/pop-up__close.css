@@ -2,6 +2,7 @@
   width: 32px;
   height: 32px;
   position: absolute;
+
   background: url(../../../images/svg/close-icon.svg) no-repeat;
   background-size: cover;
   background-position: center;
@@ -11,7 +12,7 @@
   color: #fff;
   cursor: pointer;
 
-  z-index: 15;
+  z-index: 100;
 }
 
 @media (max-width: 375px) {
