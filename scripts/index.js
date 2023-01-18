@@ -1,7 +1,7 @@
 // pop-up // profile
 
 let profile = document.querySelector(".profile");
-let profileEditPopUpOpen = profile.querySelector(".pop-up__open");
+let profileEditPopUpOpen = profile.querySelector(".profile__edit-button");
 let popUpClose = document.querySelector(".pop-up__close");
 let profilePopUp = document.querySelector(".pop-up_place_profile");
 let profileName = document.querySelector(".profile__name");
