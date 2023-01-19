@@ -35,7 +35,6 @@ popUpClose.addEventListener("click", closeEditProfile);
 let formElement = document.querySelector(".form");
 let nameInput = formElement.querySelector(".form__item_el_name");
 let jobInput = formElement.querySelector(".form__item_el_job");
-let buttonSave = document.querySelector(".pop-up__button-save");
 
 function handleFormSubmit(evt) {
   evt.preventDefault();

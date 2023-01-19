@@ -16,7 +16,7 @@
 
 @media (max-width: 768px) {
   .profile__desc {
-    grid-row-gap: none;
+    grid-row-gap: 0;
     justify-self: center;
     text-align: center;
     grid-template-columns: 1fr 30px;
