@@ -4,6 +4,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr 63px;
+  grid-template-rows: 282px 1fr;
   width: 282px;
   height: 361px;
   list-style: none;
