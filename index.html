@@ -87,7 +87,11 @@
     </footer>
     <div class="pop-up pop-up_place_profile">
       <div class="pop-up__container">
-        <form name="edit-profile" action="#" class="form">
+        <form
+          name="edit-profile"
+          action="#"
+          class="form form_place_edit-profile"
+        >
           <h2 class="form__title">Редактировать профиль</h2>
           <input
             name="name"
@@ -96,6 +100,26 @@
           />
           <input name="job" class="form__item form__item_el_job" type="text" />
           <button type="submit" class="pop-up__button-save">Сохранить</button>
+        </form>
+        <button type="button" class="pop-up__close"></button>
+      </div>
+    </div>
+    <div class="pop-up pop-up_place_add-place">
+      <div class="pop-up__container">
+        <form name="add-place" action="#" class="form form_place_add-place">
+          <h2 class="form__title">Новое место</h2>
+          <input
+            name="name"
+            class="form__item form__item_el_name"
+            type="text"
+          />
+          <!-- может путаться с name другой формы -->
+          <input
+            name="link"
+            class="form__item form__item_el_link"
+            type="text"
+          />
+          <button type="submit" class="pop-up__button-save">Создать</button>
         </form>
         <button type="button" class="pop-up__close"></button>
       </div>

@@ -45,6 +45,7 @@
 
 @import url(../blocks/pop-up/_active/pop-up_active.css);
 @import url(../blocks/pop-up/__close/pop-up__close.css);
+@import url(../blocks/form/__item/_el/form__item_el_link.css);
 
 /* form */
 
