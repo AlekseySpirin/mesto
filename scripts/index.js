@@ -1,4 +1,4 @@
-// Array
+// ARRAY
 const initialCards = [
   {
     name: "Архыз",
@@ -40,100 +40,110 @@ renderTemplate(initialCards);
 function renderTemplate(items) {
   // функция для перебора и добавления массива в список
   const elements = items.map((item) => {
+    return createElement(item);
     //объявили переменную и с помощью "map" создали новый массив
     // перебрали элементы задав им свойства из значений элементов массива initialCards
-    const element = cardTemplate.cloneNode(true);
-    // объявили переменную в котурую скопировали копию структуры
-    // заготовленной карточки <template> в HTML
-
-    element.querySelector(".card__title").textContent = item.name;
-    // каждому элементу в шаблоне <template> призваиваем значение
-    // имени из массива initialCards
-
-    element.querySelector(".card__img").src = item.link;
-    // каждому элементу в шаблоне <template> призваиваем значение
-    // ссылки из массива initialCards
-
-    element.querySelector(".card__img").alt = item.name;
-    // каждому элементу в шаблоне <template> призваиваем значение
-    // alt (если картинка не загрузится на странице - отобразится имя элемента)
-    // из массива initialCards
-
-    return element;
-    // возвращаем элемент из скопированного массива к которому применили
-    // значения из массива initialCards
   });
-  cards.prepend(...elements);
+  cards.append(...elements);
   // заполнили список HTML элементами из скопированного массива
-  // добавление в начало
 }
 
-// POP-UP_ADD_PLACE
+function createElement(item) {
+  const element = cardTemplate.cloneNode(true);
+  // объявили переменную в котурую скопировали копию структуры
+  // заготовленной карточки <template> в HTML
 
-// ADD-BUTTON //
+  element.querySelector(".card__title").textContent = item.name;
+  // каждому элементу в шаблоне <template> призваиваем значение
+  // имени из массива initialCards
 
-const cardAddBtn = document.querySelector(".profile__add-button");
-// создали переменную для кнопки "Добавить"
+  element.querySelector(".card__img").src = item.link;
+  // каждому элементу в шаблоне <template> призваиваем значение
+  // ссылки из массива initialCards
 
-cardAddBtn.addEventListener("click", () => {});
+  element.querySelector(".card__img").alt = item.name;
+  // каждому элементу в шаблоне <template> призваиваем значение
+  // alt (если картинка не загрузится на странице - отобразится имя элемента)
+  // из массива initialCards
 
-// pop-up // profile
+  return element;
+  // возвращаем элемент из скопированного массива к которому применили
+  // значения из массива initialCards
+}
 
-let profile = document.querySelector(".profile");
-let profileEditPopUpOpen = profile.querySelector(".profile__edit-button");
-let popUpClose = document.querySelector(".pop-up__close");
-let profilePopUp = document.querySelector(".pop-up_place_profile");
-let profileName = document.querySelector(".profile__name");
-let profileInfo = document.querySelector(".profile__info");
+// POP-UP // PROFILE
+const popUp = document.querySelector(".pop-up");
+const popUpProfile = document.querySelector(".pop-up_place_profile");
 
-// название классов поменял (привязав попап к секции профиль), так как
-// на сайте еще будут всплывающие окна и они будут записаны на другие переменные
-// пытаюсь понять как будет удобнее
-// 1) задавать имя переменным чтобы разграничить попапы
-// 2) задавать пути через секции в которых находится попап
-// переменная "pop-up ...(название секции)" ;"...__open"; "...___close"
-// разберусь когда будет больше попапов
+const profile = document.querySelector(".profile");
+const profileName = profile.querySelector(".profile__name");
+const profileInfo = profile.querySelector(".profile__info");
 
-// З.Ы заметка для себя ревью не нужно отвечать на эти мысли и не расценивать
-// как обращение в свой адрес
+const profileEditPopUpOpen = profile.querySelector(".profile__edit-button");
 
 profileEditPopUpOpen.addEventListener("click", function () {
-  profilePopUp.classList.add("pop-up_active");
+  popUp.classList.add("pop-up_active");
   nameInput.value = profileName.textContent;
   jobInput.value = profileInfo.textContent;
 });
 
-function closeEditProfile() {
-  profilePopUp.classList.remove("pop-up_active");
-}
+// SUBMIT
 
-popUpClose.addEventListener("click", closeEditProfile);
-
-// submit
-
-let formElement = document.querySelector(".form");
-let nameInput = formElement.querySelector(".form__item_el_name");
-let jobInput = formElement.querySelector(".form__item_el_job");
+const formElement = document.querySelector(".form_place_edit-profile");
+const nameInput = formElement.querySelector(".form__item_el_name");
+const jobInput = formElement.querySelector(".form__item_el_job");
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileInfo.textContent = jobInput.value;
-  closeEditProfile();
+  closePopUp();
 }
 
 formElement.addEventListener("submit", handleFormSubmit);
 
+// POP-UP // PLACE
+
+const popUpPlace = document.querySelector(".pop-up_place_add-place");
+const placeForm = popUpPlace.querySelector(".form");
+const placeName = popUpPlace.querySelector(".form__item_el_name");
+const placeLink = popUpPlace.querySelector(".form__item_el_link");
+
+// ADD-BUTTON //
+
+const addPlaceBtn = document.querySelector(".profile__add-button");
+// создали переменную для кнопки "Добавить"
+
+addPlaceBtn.addEventListener("click", () => {
+  popUpPlace.classList.add("pop-up_active");
+
+  placeName.placeholder = "Название";
+  placeLink.placeholder = "Ссылка на картинку";
+});
+
+// CLOSE
+
+const popUpClose = document.querySelectorAll(".pop-up__close");
+
+popUpClose.forEach(function (el) {
+  el.addEventListener("click", closePopUp);
+});
+
+function closePopUp() {
+  const popUpActive = document.querySelector(".pop-up_active");
+  popUpActive.classList.remove("pop-up_active");
+}
+
 //------------------------------------------------------------
 
-// like
+// LIKE
 
-// let like = document.querySelectorAll(".card__like");
+const like = document.querySelectorAll(".card__like");
 
-// like.forEach(function (el) {
-//   el.addEventListener("click", function (evt) {
-//     evt.stopPropagation();
-//     this.classList.toggle("card__like_active");
-//   });
-// });
+like.forEach(function (el) {
+  el.addEventListener("click", function (evt) {
+    evt.stopPropagation();
+    el.classList.toggle("card__like_active");
+  });
+});
