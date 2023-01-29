@@ -1,4 +1,17 @@
-// ARRAY
+// CLOSE-BTN
+
+const popUpClose = document.querySelectorAll(".pop-up__close");
+
+popUpClose.forEach(function (el) {
+  el.addEventListener("click", closePopUp);
+});
+
+function closePopUp() {
+  const popUpActive = document.querySelector(".pop-up_active");
+  popUpActive.classList.remove("pop-up_active");
+}
+
+// ARRAY // PLACE-------------------------------------------------------------
 const initialCards = [
   {
     name: "Архыз",
@@ -52,16 +65,16 @@ function createElement(item) {
   const element = cardTemplate.cloneNode(true);
   // объявили переменную в котурую скопировали копию структуры
   // заготовленной карточки <template> в HTML
-
-  element.querySelector(".card__title").textContent = item.name;
+  const title = element.querySelector(".card__title");
+  title.textContent = item.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // имени из массива initialCards
-
-  element.querySelector(".card__img").src = item.link;
+  const link = element.querySelector(".card__img");
+  link.src = item.link;
   // каждому элементу в шаблоне <template> призваиваем значение
   // ссылки из массива initialCards
-
-  element.querySelector(".card__img").alt = item.name;
+  const alt = element.querySelector(".card__img");
+  alt.alt = item.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // alt (если картинка не загрузится на странице - отобразится имя элемента)
   // из массива initialCards
@@ -71,13 +84,48 @@ function createElement(item) {
   // значения из массива initialCards
 }
 
-// POP-UP // PROFILE
+// POP-UP // PLACE ---------------------------------------------------
+
+const popUpPlace = document.querySelector(".pop-up_place_add-place");
+const placeForm = popUpPlace.querySelector(".form");
+const placeName = popUpPlace.querySelector(".form__item_el_name");
+const placeLink = popUpPlace.querySelector(".form__item_el_link");
+
+// ADD-BUTTON // PLACE
+
+const addPlaceBtn = document.querySelector(".profile__add-button");
+// создали переменную для кнопки "Добавить"
+
+addPlaceBtn.addEventListener("click", () => {
+  popUpPlace.classList.add("pop-up_active");
+
+  placeName.placeholder = "Название";
+  placeLink.placeholder = "Ссылка на картинку";
+});
+
+//SUBMIT // PLACE
+
+const submitBtnPlace = popUpPlace.querySelector(".pop-up__button-save");
+
+submitBtnPlace.addEventListener("click", (evt) => {
+  evt.preventDefault();
+
+  const name = placeForm.querySelector(".form__item_el_name").value;
+  const link = placeForm.querySelector(".form__item_el_link").value;
+  const element = createElement({ name: name, link: link, alt: name });
+  closePopUp(popUpPlace);
+  cards.prepend(element);
+});
+
+// POP-UP // PROFILE //--------------------------------------
 const popUp = document.querySelector(".pop-up");
 const popUpProfile = document.querySelector(".pop-up_place_profile");
 
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileInfo = profile.querySelector(".profile__info");
+
+// EDIT-BTN // PROFILE
 
 const profileEditPopUpOpen = profile.querySelector(".profile__edit-button");
 
@@ -87,7 +135,7 @@ profileEditPopUpOpen.addEventListener("click", function () {
   jobInput.value = profileInfo.textContent;
 });
 
-// SUBMIT
+// SUBMIT // PROFILE
 
 const formElement = document.querySelector(".form_place_edit-profile");
 const nameInput = formElement.querySelector(".form__item_el_name");
@@ -102,40 +150,6 @@ function handleFormSubmit(evt) {
 }
 
 formElement.addEventListener("submit", handleFormSubmit);
-
-// POP-UP // PLACE
-
-const popUpPlace = document.querySelector(".pop-up_place_add-place");
-const placeForm = popUpPlace.querySelector(".form");
-const placeName = popUpPlace.querySelector(".form__item_el_name");
-const placeLink = popUpPlace.querySelector(".form__item_el_link");
-
-// ADD-BUTTON //
-
-const addPlaceBtn = document.querySelector(".profile__add-button");
-// создали переменную для кнопки "Добавить"
-
-addPlaceBtn.addEventListener("click", () => {
-  popUpPlace.classList.add("pop-up_active");
-
-  placeName.placeholder = "Название";
-  placeLink.placeholder = "Ссылка на картинку";
-});
-
-// CLOSE
-
-const popUpClose = document.querySelectorAll(".pop-up__close");
-
-popUpClose.forEach(function (el) {
-  el.addEventListener("click", closePopUp);
-});
-
-function closePopUp() {
-  const popUpActive = document.querySelector(".pop-up_active");
-  popUpActive.classList.remove("pop-up_active");
-}
-
-//------------------------------------------------------------
 
 // LIKE
 
