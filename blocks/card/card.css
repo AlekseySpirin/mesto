@@ -11,4 +11,11 @@
   overflow: hidden;
   border-radius: 10px;
   background-color: #fff;
+  transition: 0.3s ease-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  /* box-shadow: 0 0 15px 10px rgba(70, 70, 147, 0.63); */
 }

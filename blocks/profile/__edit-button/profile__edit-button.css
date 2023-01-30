@@ -10,7 +10,7 @@
   align-self: center;
   cursor: pointer;
   grid-area: edit-btn;
-
+  transition: 0.3s ease;
   background-color: #000;
   border: 1px solid #ffffff;
   /* grid-row-start: 2;
@@ -33,5 +33,4 @@
 
 .profile__edit-button:hover {
   opacity: 0.6;
-  transition: 0.3s ease;
 }
