@@ -65,19 +65,32 @@ function createElement(item) {
   const element = cardTemplate.cloneNode(true);
   // объявили переменную в котурую скопировали копию структуры
   // заготовленной карточки <template> в HTML
-  const title = element.querySelector(".card__title");
-  title.textContent = item.name;
+
+  element.querySelector(".card__title").textContent = item.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // имени из массива initialCards
-  const link = element.querySelector(".card__img");
-  link.src = item.link;
+
+  const imgPlace = element.querySelector(".card__img");
+
+  imgPlace.src = item.link;
   // каждому элементу в шаблоне <template> призваиваем значение
   // ссылки из массива initialCards
-  const alt = element.querySelector(".card__img");
-  alt.alt = item.name;
+
+  element.querySelector(".card__img").alt = item.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // alt (если картинка не загрузится на странице - отобразится имя элемента)
   // из массива initialCards
+
+  element.querySelector(".card__trash").addEventListener("click", () => {
+    element.remove();
+  });
+
+  const like = element.querySelector(".card__like");
+  like.addEventListener("click", () => {
+    like.classList.toggle("card__like_active");
+  });
+
+  imgPlace.addEventListener("click", () => {});
 
   return element;
   // возвращаем элемент из скопированного массива к которому применили
@@ -107,7 +120,7 @@ addPlaceBtn.addEventListener("click", () => {
 
 const submitBtnPlace = popUpPlace.querySelector(".pop-up__button-save");
 
-submitBtnPlace.addEventListener("click", (evt) => {
+placeForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   const name = placeForm.querySelector(".form__item_el_name").value;
@@ -153,11 +166,11 @@ formElement.addEventListener("submit", handleFormSubmit);
 
 // LIKE
 
-const like = document.querySelectorAll(".card__like");
+// const like = document.querySelectorAll(".card__like");
 
-like.forEach(function (el) {
-  el.addEventListener("click", function (evt) {
-    evt.stopPropagation();
-    el.classList.toggle("card__like_active");
-  });
-});
+// like.forEach(function (el) {
+//   el.addEventListener("click", function (evt) {
+//     evt.stopPropagation();
+//     el.classList.toggle("card__like_active");
+//   });
+// });
