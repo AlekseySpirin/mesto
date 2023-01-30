@@ -4,7 +4,7 @@
   /* margin-bottom: 30px; */
 }
 
-@media (max-width: 375px) {
+@media (max-width: 560px) {
   .form__item_el_link {
     width: 235px;
   }

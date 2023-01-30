@@ -10,11 +10,10 @@
   position: relative;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 560px) {
   .form {
     width: 238px;
 
     padding: 25px 22px;
-    margin-top: 123px;
   }
 }
