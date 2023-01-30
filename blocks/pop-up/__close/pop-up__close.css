@@ -15,12 +15,17 @@
   z-index: 100;
 }
 
+@media (max-width: 560px) {
+  .pop-up__close {
+    top: -36px;
+    right: 0;
+  }
+}
+
 @media (max-width: 375px) {
   .pop-up__close {
     width: 20px;
     height: 20px;
-    top: -36px;
-    right: 0;
   }
 }
 

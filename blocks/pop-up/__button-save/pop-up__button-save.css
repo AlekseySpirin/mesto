@@ -16,7 +16,7 @@
   margin-top: 48px;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 560px) {
   .pop-up__button-save {
     width: 238px;
     height: 46px;
