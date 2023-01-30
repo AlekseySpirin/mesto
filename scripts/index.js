@@ -70,9 +70,9 @@ function createElement(item) {
   // каждому элементу в шаблоне <template> призваиваем значение
   // имени из массива initialCards
 
-  const imgPlace = element.querySelector(".card__img");
+  const imgElement = element.querySelector(".card__img");
 
-  imgPlace.src = item.link;
+  imgElement.src = item.link;
   // каждому элементу в шаблоне <template> призваиваем значение
   // ссылки из массива initialCards
 
@@ -90,7 +90,12 @@ function createElement(item) {
     like.classList.toggle("card__like_active");
   });
 
-  imgPlace.addEventListener("click", () => {});
+  imgElement.addEventListener("click", () => {
+    document.querySelector(".pop-up_place_img").classList.add("pop-up_active");
+    document.querySelector(".pop-up__img").src = item.link;
+    document.querySelector(".pop-up__title-img").textContent = item.name;
+    document.querySelector(".pop-up__img").alt = item.name;
+  });
 
   return element;
   // возвращаем элемент из скопированного массива к которому применили

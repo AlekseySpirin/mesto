@@ -5,5 +5,11 @@
   top: 20px;
   right: 20px;
   background: url(../../../images/svg/Trash.svg) no-repeat;
-  z-index: 50;
+  z-index: 1;
+}
+
+.card__trash:hover {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
