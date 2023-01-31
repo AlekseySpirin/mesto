@@ -1,10 +1,43 @@
-// CLOSE-BTN
+// BTN-CLOSE //
+const popUpCloseList = document.querySelectorAll(".pop-up__close");
 
-const popUpClose = document.querySelectorAll(".pop-up__close");
+// CARDS //
+const cardTemplate = document
+  .querySelector(".card-template")
+  .content.querySelector(".card");
+// создали переменную для копирования HTML структуры шаблона
 
-popUpClose.forEach(function (el) {
-  el.addEventListener("click", closePopUp);
-});
+const cardsContainer = document.querySelector(".cards");
+// создали переменную для добавления элементов массива в список HTML
+
+// POP-UP // PLACE //
+
+const popUpPlace = document.querySelector(".pop-up_place_add-place");
+const placeForm = popUpPlace.querySelector(".form");
+const placeName = placeForm.querySelector(".form__item_el_name");
+const placeLink = placeForm.querySelector(".form__item_el_link");
+const btnPlaceAdd = document.querySelector(".profile__add-button");
+// создали переменную для кнопки "Добавить"
+
+// POP-UP // IMG //
+
+const popUpPlaceImg = document.querySelector(".pop-up_place_img");
+const popUpImg = document.querySelector(".pop-up__img");
+const popUpTitleImg = document.querySelector(".pop-up__title-img");
+
+// POP-UP // PROFILE //
+
+const popUpProfile = document.querySelector(".pop-up_place_profile");
+const profile = document.querySelector(".profile");
+const profileName = profile.querySelector(".profile__name");
+const profileInfo = profile.querySelector(".profile__info");
+const profileForm = document.querySelector(".form_place_edit-profile");
+const nameInput = profileForm.querySelector(".form__item_el_name");
+const jobInput = profileForm.querySelector(".form__item_el_job");
+
+// BTN-EDIT // PROFILE
+
+const btnEditProfile = profile.querySelector(".profile__edit-button");
 
 function closePopUp() {
   const popUpActive = document.querySelector(".pop-up_active");
@@ -12,170 +45,110 @@ function closePopUp() {
 }
 
 // ARRAY // PLACE-------------------------------------------------------------
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
-const cardTemplate = document
-  .querySelector(".card-template")
-  .content.querySelector(".card");
-// создали переменную для копирования HTML структуры шаблона
-
-const cards = document.querySelector(".cards");
-// создали переменную для добавления элементов массива в список HTML
-
-renderTemplate(initialCards);
+renderCards(initialCards);
 // вызвали функцию с массивом в качестве аргумента
 
-function renderTemplate(items) {
+function renderCards(items) {
   // функция для перебора и добавления массива в список
-  const elements = items.map((item) => {
-    return createElement(item);
+  const cards = items.map((cardData) => {
+    return createCard(cardData);
     //объявили переменную и с помощью "map" создали новый массив
     // перебрали элементы задав им свойства из значений элементов массива initialCards
   });
-  cards.append(...elements);
+  cardsContainer.append(...cards);
   // заполнили список HTML элементами из скопированного массива
 }
 
-function createElement(item) {
-  const element = cardTemplate.cloneNode(true);
+function createCard(cardData) {
+  const card = cardTemplate.cloneNode(true);
   // объявили переменную в котурую скопировали копию структуры
   // заготовленной карточки <template> в HTML
 
-  element.querySelector(".card__title").textContent = item.name;
+  card.querySelector(".card__title").textContent = cardData.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // имени из массива initialCards
 
-  const imgElement = element.querySelector(".card__img");
+  const cardImg = card.querySelector(".card__img");
 
-  imgElement.src = item.link;
+  cardImg.src = cardData.link;
   // каждому элементу в шаблоне <template> призваиваем значение
   // ссылки из массива initialCards
 
-  element.querySelector(".card__img").alt = item.name;
+  cardImg.alt = cardData.name;
   // каждому элементу в шаблоне <template> призваиваем значение
   // alt (если картинка не загрузится на странице - отобразится имя элемента)
   // из массива initialCards
 
-  element.querySelector(".card__trash").addEventListener("click", () => {
-    element.remove();
+  card.querySelector(".card__trash").addEventListener("click", () => {
+    card.remove();
   });
 
-  const like = element.querySelector(".card__like");
-  like.addEventListener("click", () => {
-    like.classList.toggle("card__like_active");
+  const btnLike = card.querySelector(".card__like");
+  btnLike.addEventListener("click", () => {
+    btnLike.classList.toggle("card__like_active");
   });
 
-  imgElement.addEventListener("click", () => {
-    document.querySelector(".pop-up_place_img").classList.add("pop-up_active");
-    document.querySelector(".pop-up__img").src = item.link;
-    document.querySelector(".pop-up__title-img").textContent = item.name;
-    document.querySelector(".pop-up__img").alt = item.name;
+  cardImg.addEventListener("click", () => {
+    openPopUp(popUpPlaceImg);
+    popUpImg.src = cardData.link;
+    popUpTitleImg.textContent = cardData.name;
+    popUpImg.alt = cardData.name;
   });
 
-  return element;
+  return card;
   // возвращаем элемент из скопированного массива к которому применили
   // значения из массива initialCards
 }
 
-// POP-UP // PLACE ---------------------------------------------------
-
-const popUpPlace = document.querySelector(".pop-up_place_add-place");
-const placeForm = popUpPlace.querySelector(".form");
-const placeName = popUpPlace.querySelector(".form__item_el_name");
-const placeLink = popUpPlace.querySelector(".form__item_el_link");
-
-// ADD-BUTTON // PLACE
-
-const addPlaceBtn = document.querySelector(".profile__add-button");
-// создали переменную для кнопки "Добавить"
-
-addPlaceBtn.addEventListener("click", () => {
-  popUpPlace.classList.add("pop-up_active");
-
-  placeName.placeholder = "Название";
-  placeLink.placeholder = "Ссылка на картинку";
-});
-
-//SUBMIT // PLACE
-
-const submitBtnPlace = popUpPlace.querySelector(".pop-up__button-save");
-
-placeForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-
-  const name = placeForm.querySelector(".form__item_el_name").value;
-  const link = placeForm.querySelector(".form__item_el_link").value;
-  const element = createElement({ name: name, link: link, alt: name });
-  closePopUp(popUpPlace);
-  cards.prepend(element);
-});
-
-// POP-UP // PROFILE //--------------------------------------
-const popUp = document.querySelector(".pop-up");
-const popUpProfile = document.querySelector(".pop-up_place_profile");
-
-const profile = document.querySelector(".profile");
-const profileName = profile.querySelector(".profile__name");
-const profileInfo = profile.querySelector(".profile__info");
-
-// EDIT-BTN // PROFILE
-
-const profileEditPopUpOpen = profile.querySelector(".profile__edit-button");
-
-profileEditPopUpOpen.addEventListener("click", function () {
-  popUp.classList.add("pop-up_active");
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileInfo.textContent;
-});
-
-// SUBMIT // PROFILE
-
-const formElement = document.querySelector(".form_place_edit-profile");
-const nameInput = formElement.querySelector(".form__item_el_name");
-const jobInput = formElement.querySelector(".form__item_el_job");
-
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
   profileInfo.textContent = jobInput.value;
   closePopUp();
 }
+function handlePlaceFormSubmit(evt) {
+  evt.preventDefault();
+  const cardInsert = createCard({
+    name: placeName.value,
+    link: placeLink.value,
+    alt: placeName.value,
+  });
+  closePopUp();
+  cardsContainer.prepend(cardInsert);
+  placeForm.reset();
+}
 
-formElement.addEventListener("submit", handleFormSubmit);
+function openPopUp(el) {
+  el.classList.add("pop-up_active");
+}
+// BTN
 
-// LIKE
-
-// const like = document.querySelectorAll(".card__like");
-
-// like.forEach(function (el) {
-//   el.addEventListener("click", function (evt) {
-//     evt.stopPropagation();
-//     el.classList.toggle("card__like_active");
-//   });
+// btnPlaceAdd.addEventListener("click", () => {
+//   popUpPlace.classList.add("pop-up_active");
 // });
+
+// btnEditProfile.addEventListener("click", () => {
+//   popUpProfile.classList.add("pop-up_active");
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileInfo.textContent;
+// });
+//SUBMIT //
+
+placeForm.addEventListener("submit", handlePlaceFormSubmit);
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+//-------------------------------------------------------------
+popUpCloseList.forEach(function (el) {
+  el.addEventListener("click", closePopUp);
+});
+
+btnEditProfile.addEventListener("click", () => {
+  openPopUp(popUpProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileInfo.textContent;
+});
+
+btnPlaceAdd.addEventListener("click", () => {
+  openPopUp(popUpPlace);
+});

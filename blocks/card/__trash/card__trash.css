@@ -18,3 +18,9 @@
 .card:hover .card__trash {
   transform: translateY(0%) scale(100%);
 }
+
+@media (max-width: 768px) {
+  .card__trash {
+    transform: translateY(0%) scale(100%);
+  }
+}
