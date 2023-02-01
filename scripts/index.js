@@ -113,7 +113,6 @@ function handlePlaceFormSubmit(evt) {
   const cardInsert = createCard({
     name: placeName.value,
     link: placeLink.value,
-    alt: placeName.value,
   });
   closePopUp();
   cardsContainer.prepend(cardInsert);
