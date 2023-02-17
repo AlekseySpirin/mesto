@@ -27,59 +27,7 @@
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="places">
-        <ul class="cards">
-          <!-- <li class="card">
-            <img
-              class="card__img"
-              src="./images/karachaevsk.jpg"
-              alt="Карачаевск"
-            />
-            <h2 class="card__title">Карачаевск</h2>
-            <button type="button" class="card__like"></button>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./images/elbrus.jpg"
-              alt="Гора Эльбрус"
-            />
-
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__like"></button>
-          </li>
-          <li class="card">
-            <img class="card__img" src="./images/dombai.jpg" alt="Домбай" />
-
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like"></button>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./images/elbrus.jpg"
-              alt="Гора Эльбрус"
-            />
-
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button type="button" class="card__like"></button>
-          </li>
-          <li class="card">
-            <img class="card__img" src="./images/dombai.jpg" alt="Домбай" />
-
-            <h2 class="card__title">Домбай</h2>
-            <button type="button" class="card__like"></button>
-          </li>
-          <li class="card">
-            <img
-              class="card__img"
-              src="./images/karachaevsk.jpg"
-              alt="Карачаево-Черкессия"
-            />
-
-            <h2 class="card__title">Карачаево-Черкессия</h2>
-            <button type="button" class="card__like"></button>
-          </li> -->
-        </ul>
+        <ul class="cards"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -87,41 +35,58 @@
     </footer>
     <div class="pop-up pop-up_place_profile">
       <div class="pop-up__container">
-        <form
-          name="edit-profile"
-          action="#"
-          class="form form_place_edit-profile"
-        >
+        <form name="edit-profile" action="#" class="form form_place_edit-profile" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <input
             name="name"
             class="form__item form__item_el_name"
             type="text"
+            id="name"
+            minlength="2"
+            maxlength="40"
+            required
           />
-          <input name="job" class="form__item form__item_el_job" type="text" />
-          <button type="submit" class="pop-up__button-save">Сохранить</button>
+          <span class="form__item-error form__item-error_el_name"></span>
+          <input
+            name="job"
+            class="form__item form__item_el_job"
+            type="text"
+            id="job"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="form__item-error form__item-error_el_job"></span>
+          <button type="submit" class="pop-up__button">Сохранить</button>
         </form>
         <button type="button" class="pop-up__close"></button>
       </div>
     </div>
     <div class="pop-up pop-up_place_add-place">
       <div class="pop-up__container">
-        <form name="add-place" action="#" class="form form_place_add-place">
+        <form name="add-place" action="#" class="form form_place_add-place" novalidate>
           <h2 class="form__title">Новое место</h2>
           <input
-            name="name"
+            id="place"
+            name="place"
             class="form__item form__item_el_name"
             type="text"
             placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required
           />
-
+          <span class="form__item-error form__item-error_el_place"></span>
           <input
+            id="link"
             name="link"
             class="form__item form__item_el_link"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
+            required
           />
-          <button type="submit" class="pop-up__button-save">Создать</button>
+          <span class="form__item-error form__item-error_el_link"></span>
+          <button type="submit" class="pop-up__button">Создать</button>
         </form>
         <button type="button" class="pop-up__close"></button>
       </div>
@@ -141,7 +106,8 @@
         <div class="card__trash"></div>
       </li>
     </template>
-    <script src="./scripts/cards.js"></script>
-    <script src="./scripts/index.js"></script>
+    <script defer src="./scripts/cards.js"></script>
+    <script defer src="./scripts/validate.js"></script>
+    <script defer src="./scripts/index.js"></script>
   </body>
 </html>

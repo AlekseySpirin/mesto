@@ -1,5 +1,5 @@
-.pop-up__button-save {
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+.pop-up__button {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -17,7 +17,7 @@
 }
 
 @media (max-width: 560px) {
-  .pop-up__button-save {
+  .pop-up__button {
     width: 238px;
     height: 46px;
     font-size: 14px;
@@ -25,7 +25,7 @@
   }
 }
 
-.pop-up__button-save:hover {
+.pop-up__button:hover {
   opacity: 0.8;
   transition: 0.3s ease;
 }

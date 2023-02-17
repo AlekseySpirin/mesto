@@ -1,7 +1,6 @@
 .form__item_el_name {
   width: 358px;
   min-height: 27px;
-  margin-bottom: 30px;
 }
 
 @media (max-width: 560px) {
