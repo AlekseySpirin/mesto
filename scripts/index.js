@@ -7,6 +7,8 @@ const cardTemplate = document.querySelector('.card-template').content.querySelec
 
 const cardsContainer = document.querySelector('.cards');
 // создали переменную для добавления элементов массива в список HTML
+const popUp = document.querySelector('.pop-up');
+const popUpList = document.querySelectorAll('.pop-up');
 
 // POP-UP // PLACE //
 
@@ -14,6 +16,7 @@ const popUpPlace = document.querySelector('.pop-up_place_add-place');
 
 const btnPlaceAdd = document.querySelector('.profile__add-button');
 // создали переменную для кнопки "Добавить"
+const formList = document.querySelectorAll('.form');
 
 // FORM // PLACE //
 const placeForm = popUpPlace.querySelector('.form_place_add-place');
@@ -58,7 +61,23 @@ const btnEditProfile = profile.querySelector('.profile__edit-button');
 function closePopUp() {
   const popUpActive = document.querySelector('.pop-up_active');
   popUpActive.classList.remove('pop-up_active');
+  formList.forEach((elementForm) => {
+    elementForm.reset();
+  });
+  document.removeEventListener('keydown', closedPopUpEsc());
 }
+
+// function closePopUp() {
+//   return function (popUp) {
+//     if (popUp.classList.contains('pop-up_active')) {
+//       popUp.classList.remove('pop-up_active');
+//       formList.forEach((elementForm) => {
+//         elementForm.reset();
+//       });
+//     }
+//     document.removeEventListener('keydown', closedPopUpEsc());
+//   };
+// }
 
 // ARRAY // PLACE-------------------------------------------------------------
 
@@ -132,92 +151,12 @@ function handlePlaceFormSubmit(evt) {
   });
   closePopUp();
   cardsContainer.prepend(cardInsert);
-  placeForm.reset();
 }
 
 function openPopUp(el) {
   el.classList.add('pop-up_active');
+  document.addEventListener('keydown', closedPopUpEsc());
 }
-//-------------------------------------------------------------
-//-------------------------------------------------------------
-//-------------------------------------------------------------
-//TEST VALIDATION
-
-// const showInputError = (formElement, inputElement, errorMessage) => {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   inputElement.classList.add('form__input_type_error');
-//   errorElement.textContent = errorMessage;
-//   errorElement.classList.add('form__input-error_active');
-// };
-
-// const hideInputError = (formElement, inputElement) => {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   inputElement.classList.remove('form__input_type_error');
-//   errorElement.classList.remove('form__input-error_active');
-//   errorElement.textContent = '';
-// };
-
-// const checkInputValidity = (formElement, inputElement) => {
-//   if (!inputElement.validity.valid) {
-//     showInputError(formElement, inputElement, inputElement.validationMessage);
-//   } else {
-//     hideInputError(formElement, inputElement);
-//   }
-// };
-// const hasInvalidInput = (inputList) => {
-
-//   return inputList.some((inputElement) => {
-
-//     return !inputElement.validity.valid
-//   })
-// }
-
-// const toggleButtonState = (inputList, buttonElement) => {
-
-//   if (hasInvalidInput(inputList)) {
-
-//     buttonElement.classList.add('button_inactive');
-//   } else {
-
-//     buttonElement.classList.remove('button_inactive');
-//   }
-// };
-
-// const setEventListeners = (formElement) => {
-//   const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-//   const buttonElement = formElement.querySelector('.form__submit');
-
-//   // чтобы проверить состояние кнопки в самом начале
-//   toggleButtonState(inputList, buttonElement);
-
-//   inputList.forEach((inputElement) => {
-//     inputElement.addEventListener('input', function () {
-//       checkInputValidity(formElement, inputElement);
-//       // чтобы проверять его при изменении любого из полей
-//       toggleButtonState(inputList, buttonElement);
-//     });
-//   });
-// };
-
-// const enableValidation = () => {
-//   const formList = Array.from(document.querySelectorAll('.form'));
-//   formList.forEach((formElement) => {
-//     formElement.addEventListener('submit', function (evt) {
-//       evt.preventDefault();
-//     });
-// const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
-
-// fieldsetList.forEach((fieldSet) => {
-//   setEventListeners(fieldSet);
-// });
-
-//   });
-// };
-
-// enableValidation();
-//-------------------------------------------------------------
-//-------------------------------------------------------------
-//-------------------------------------------------------------
 
 //SUBMIT //
 
@@ -237,3 +176,39 @@ btnEditProfile.addEventListener('click', () => {
 btnPlaceAdd.addEventListener('click', () => {
   openPopUp(popUpPlace);
 });
+
+popUpList.forEach((popUpElement) => {
+  popUpElement.addEventListener('mousedown', (evt) => {
+    if (evt.target === popUpElement) {
+      closePopUp();
+    }
+  });
+});
+
+function closedPopUpEsc() {
+  return (evt) => {
+    if (evt.key === 'Escape') {
+      closePopUp();
+    }
+  };
+}
+// const closedPopUpEsc = (evt) => {
+//   if (evt.key === 'Escape') {
+//     closePopUp();
+//   }
+// };
+
+// if (popUp.classList.contains == 'pop-up_active') {
+//   document.addEventListener('keydown', closedPopUpEsc());
+// } else {
+//   document.removeEventListener('keydown', closedPopUpEsc());
+// }
+
+// if (popUp.classList.contains === 'pop-up_active') {
+//    else {
+//       document.removeEventListener();
+//     }
+//   });
+// }
+
+enableValidation(formConfig);
