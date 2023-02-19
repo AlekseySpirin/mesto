@@ -40,6 +40,7 @@
           <input
             name="name"
             class="form__item form__item_el_name"
+            placeholder="Имя"
             type="text"
             id="name"
             minlength="2"
@@ -49,6 +50,7 @@
           <span class="form__item-error form__item-error_el_name"></span>
           <input
             name="job"
+            placeholder="Вид деятельности"
             class="form__item form__item_el_job"
             type="text"
             id="job"
@@ -57,9 +59,9 @@
             required
           />
           <span class="form__item-error form__item-error_el_job"></span>
-          <button type="submit" class="pop-up__button">Сохранить</button>
+          <button type="submit" class="pop-up__button" disabled>Сохранить</button>
         </form>
-        <button type="button" class="pop-up__close"></button>
+        <button type="button" class="pop-up__close pop-up__close_place_profile"></button>
       </div>
     </div>
     <div class="pop-up pop-up_place_add-place">
@@ -86,16 +88,16 @@
             required
           />
           <span class="form__item-error form__item-error_el_link"></span>
-          <button type="submit" class="pop-up__button">Создать</button>
+          <button type="submit" class="pop-up__button pop-up__button_place_place" disabled>Создать</button>
         </form>
-        <button type="button" class="pop-up__close"></button>
+        <button type="button" class="pop-up__close pop-up__close_place_add-place"></button>
       </div>
     </div>
     <div class="pop-up pop-up_place_img">
       <div class="pop-up__container pop-up__container_place_img">
         <img class="pop-up__img" src="#" alt="#" />
         <h2 class="pop-up__title-img">Название</h2>
-        <button type="button" class="pop-up__close"></button>
+        <button type="button" class="pop-up__close pop-up__close_place_place"></button>
       </div>
     </div>
     <template id="card-template" class="card-template">
