@@ -29,3 +29,14 @@
   opacity: 0.8;
   transition: 0.3s ease;
 }
+
+.pop-up__button:disabled {
+  color: #000000;
+  background: #ededed;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: 0.2;
+}

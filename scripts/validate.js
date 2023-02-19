@@ -21,39 +21,6 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.textContent = '';
 };
 
-//=========================================================================================
-// const setFieldError = (inputElement, errorElement, { validationMessage, valid, inputErrorClass }) => {
-//   errorElement.textContent = validationMessage;
-//   if (valid) {
-//     inputElement.classList.remove(inputErrorClass);
-//   }
-//   if (inputElement.classList.container === inputErrorClass) {
-//     inputElement.classList.remove(inputErrorClass);
-//   } else {
-//     inputElement.classList.add(inputErrorClass);
-//   }
-// };
-
-// const checkFieldValidity = (inputElement, errorElement, inputErrorClass) => {
-//   // const validationMessage = inputElement.validationMessage;
-//   // const valid = inputElement.validity.valid;
-//   const {
-//     validationMessage,
-//     validity: { valid },
-//   } = inputElement;
-
-//   const params = {
-//     validationMessage,
-//     valid,
-//     inputErrorClass,
-//   };
-
-//   setFieldError(inputElement, errorElement, params);
-//   return valid;
-// };
-
-//========================================================================================
-
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
@@ -70,8 +37,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(formConfig.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', 'disabled');
   } else {
     buttonElement.classList.remove(formConfig.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 };
 
@@ -83,10 +52,8 @@ const setEventListeners = (formElement) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function (evt) {
-      // const field = evt.target;
-      // const errorElement = formElement.querySelector(`.form__item-error_el_${inputElement.name}`);
+      evt.preventDefault();
       checkInputValidity(formElement, inputElement);
-      // checkFieldValidity(field, errorElement, 'form__item_invalid');
       toggleButtonState(inputList, buttonElement);
     });
   });
@@ -102,4 +69,5 @@ const enableValidation = (formConfig) => {
     setEventListeners(formElement);
   });
 };
+
 enableValidation(formConfig);
