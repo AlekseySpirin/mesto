@@ -19,12 +19,12 @@ const bntCloseAddPlace = document.querySelector('.pop-up__close_place_add-place'
 // создали переменную для кнопки "Добавить"
 const formList = document.querySelectorAll('.form');
 const btnSubmitForm = document.querySelector('.pop-up__button');
-const btnSubmitFormList = document.querySelectorAll('.pop-up__button');
+const btnSubmitFormEditProfile = document.querySelector('.pop-up__button_place_edit-profile');
 // FORM // PLACE //
 const placeForm = popUpPlace.querySelector('.form_place_add-place');
 const placeInputName = placeForm.querySelector('.form__item_el_name');
 const placeInputLink = placeForm.querySelector('.form__item_el_link');
-const bntSubmitFormPlace = placeForm.querySelector('.pop-up__button_place_place');
+const btnSubmitFormPlace = placeForm.querySelector('.pop-up__button_place_place');
 const formPlaceFields = Array.from(placeForm.querySelectorAll('.form__item'));
 // FORM // PROFILE //
 const profileForm = document.querySelector('.form_place_edit-profile');
@@ -118,10 +118,11 @@ function handleProfileFormSubmit(evt) {
   profileInfo.textContent = profileInputJob.value;
   closePopUp(popUpProfile);
 }
+
 const handlePlaceFormSubmit = (evt) => {
   evt.preventDefault();
+  disableSubmitButton(btnSubmitFormPlace);
 
-  bntSubmitFormPlace.setAttribute('disabled', 'disabled');
   const formIsValid = formPlaceFields.every((item) => item.validity.valid);
   if (formIsValid) {
     const cardInsert = createCard({
@@ -143,7 +144,6 @@ const closedPopUpEsc = (evt) => {
 const openPopUp = (popup) => {
   popup.classList.add('pop-up_active');
 
-  btnSubmitForm.setAttribute('disabled', 'disabled');
   document.addEventListener('keydown', closedPopUpEsc);
 };
 
@@ -161,21 +161,24 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 btnEditProfile.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileInfo.textContent;
+  disableSubmitButton(btnSubmitFormPlace);
   openPopUp(popUpProfile);
 });
 
 btnPlaceAdd.addEventListener('click', () => {
   placeForm.reset();
-
+  disableSubmitButton(btnSubmitFormEditProfile);
   openPopUp(popUpPlace);
 });
 
 bntCloseEditProfile.addEventListener('click', () => {
   closePopUp(popUpProfile);
+  disableSubmitButton(btnSubmitFormEditProfile);
 });
 
 bntCloseAddPlace.addEventListener('click', () => {
   closePopUp(popUpPlace);
+  disableSubmitButton(btnSubmitFormPlace);
 });
 
 popUpList.forEach((popUpElement) => {
@@ -185,5 +188,7 @@ popUpList.forEach((popUpElement) => {
     }
   });
 });
+
+console.log(placeInputName.validity.valid);
 
 enableValidation(formConfig);
