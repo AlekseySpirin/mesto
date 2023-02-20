@@ -7,6 +7,10 @@ const formConfig = {
   errorClass: 'form__item-error',
 };
 
+const disableSubmitButton = (buttonElement) => {
+  buttonElement.setAttribute('disabled', 'disabled');
+};
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.form__item-error_el_${inputElement.name}`);
   inputElement.classList.add(formConfig.inputErrorClass);
@@ -37,7 +41,7 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(formConfig.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', 'disabled');
+    disableSubmitButton(buttonElement);
   } else {
     buttonElement.classList.remove(formConfig.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
