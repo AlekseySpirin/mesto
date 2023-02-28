@@ -16,6 +16,7 @@ const popUpPlace = document.querySelector('.pop-up_place_add-place');
 
 const btnPlaceAdd = document.querySelector('.profile__add-button');
 const bntCloseAddPlace = document.querySelector('.pop-up__close_place_add-place');
+
 // создали переменную для кнопки "Добавить"
 const formList = document.querySelectorAll('.form');
 const btnSubmitForm = document.querySelector('.pop-up__button');
@@ -33,18 +34,12 @@ const profileInputJob = profileForm.querySelector('.form__item_el_job');
 
 // FORM-INPUTS // ARRAY
 
-// POP-UP // IMG //
-
-const popUpPlaceImg = document.querySelector('.pop-up_place_img');
-const popUpImg = document.querySelector('.pop-up__img');
-const popUpTitleImg = document.querySelector('.pop-up__title-img');
-const bntClosePlaceImg = document.querySelector('.pop-up__close_place_place');
 // POP-UP // PROFILE //
 
 const popUpProfile = document.querySelector('.pop-up_place_profile');
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
-const profileInfo = profile.querySelector('.profile__info');
+const profileInfo = profile.querySelector('.profile__incardDatafo');
 const bntCloseEditProfile = document.querySelector('.pop-up__close_place_profile');
 
 // BTN-EDIT // PROFILE
@@ -53,9 +48,8 @@ const btnEditProfile = profile.querySelector('.profile__edit-button');
 
 // ARRAY // PLACE-------------------------------------------------------------
 
-renderCards(initialCards);
 // вызвали функцию с массивом в качестве аргумента
-
+/*
 function renderCards(items) {
   // функция для перебора и добавления массива в список
   const cards = items.map((cardData) => {
@@ -66,7 +60,7 @@ function renderCards(items) {
   cardsContainer.append(...cards);
   // заполнили список HTML элементами из скопированного массива
 }
-
+/*
 function createCard(cardData) {
   const card = cardTemplate.cloneNode(true);
   // объявили переменную в котурую скопировали копию структуры
@@ -110,7 +104,7 @@ function createCard(cardData) {
   // возвращаем элемент из скопированного массива к которому применили
   // значения из массива initialCards
 }
-
+*/
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
@@ -125,12 +119,15 @@ const handlePlaceFormSubmit = (evt) => {
 
   const formIsValid = formPlaceFields.every((item) => item.validity.valid);
   if (formIsValid) {
-    const cardInsert = createCard({
+    const cardInsert = new Card({
       name: placeInputName.value,
       link: placeInputLink.value,
     });
+
+    const cardElement = cardInsert.generateCard();
+
     closePopUp(popUpPlace);
-    cardsContainer.prepend(cardInsert);
+    cardsContainer.prepend(cardElement);
   }
 };
 
@@ -188,7 +185,5 @@ popUpList.forEach((popUpElement) => {
     }
   });
 });
-
-console.log(placeInputName.validity.valid);
 
 enableValidation(formConfig);
