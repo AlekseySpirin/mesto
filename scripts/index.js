@@ -102,7 +102,6 @@ const handlePlaceFormSubmit = (evt) => {
   cardsContainer.prepend(cardElement);
   closePopUp(popUpPlace);
   formValidators['add-place'].resetValidation();
-  formValidators['add-place'].disableSubmitButton();
 };
 
 // button - func
@@ -175,7 +174,6 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 btnEditProfile.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileInfo.textContent;
-
   openPopUp(popUpProfile);
 });
 
@@ -193,11 +191,9 @@ popUpList.forEach((popUpElement) => {
   popUpElement.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('pop-up_active')) {
       closePopUp(popUpElement);
-      console.log(evt.target);
     }
     if (evt.target.classList.contains('pop-up__close')) {
       closePopUp(popUpElement);
-      console.log(evt.target);
     }
   });
 });
