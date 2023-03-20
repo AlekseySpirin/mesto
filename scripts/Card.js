@@ -24,6 +24,15 @@ export default class Card {
     return this._element;
   }
 
+  // _handleOpenPopup() {
+  //   popupImage.src = this._image;
+  //   popupElement.classList.add('popup_is-opened');
+  // }
+
+  // _handleClosePopup() {
+  //   popupImage.src = '';
+  //   popupElement.classList.remove('popup_is-opened');
+  // }
   _setEventListener() {
     this._cardTrash.addEventListener('click', () => {
       this._element.remove();
