@@ -40,7 +40,9 @@ export default class Card {
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');
     });
+    
     this._cardImg.addEventListener('click', () => {
+      console.log(this._cardImg)
       this._handleCardClick(this._name, this._link);
     });
   }

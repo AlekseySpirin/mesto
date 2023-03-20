@@ -41,7 +41,7 @@ export const initialCards = [
   export const popUpList = document.querySelectorAll('.pop-up');
   
   // POP-UP // PLACE //
-  
+  export const popupSelector = '.pop-up'
   export const popUpPlace = document.querySelector('.pop-up_place_add-place');
   export const btnPlaceAdd = document.querySelector('.profile__add-button');
   

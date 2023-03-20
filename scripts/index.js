@@ -1,12 +1,14 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 import {
   initialCards,
   formConfig ,
   cardTemplate,
   cardsContainer,
-  cardListSelector,
+  // cardListSelector,
   popUpList,
   popUpPlace,
   btnPlaceAdd,
@@ -23,13 +25,17 @@ import {
   btnEditProfile,
   popUpPlaceImg,
   popUpImg,
+  popupSelector,
   popUpTitleImg
 } from '../utils/constants.js';
 
 // FUNCTION===============================================================================================
 
+const popupImage = new PopupWithImage('.pop-up_place_img')
+popupImage.setEventListeners()
+
 const cardList = new Section({data: initialCards, renderer: (item) => {
-  const card = new Card(item, cardTemplate, handleCardClick)
+  const card = new Card(item, cardTemplate)
     
 
   const cardElement = card.generateCard();
@@ -69,23 +75,23 @@ const handlePlaceFormSubmit = (evt) => {
 
 // button - func
 
-const closedPopUpEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const popUpAcitive = document.querySelector('.pop-up_active');
-    closePopUp(popUpAcitive);
-  }
-};
+// const closedPopUpEsc = (evt) => {
+//   if (evt.key === 'Escape') {
+//     const popUpAcitive = document.querySelector('.pop-up_active');
+//     closePopUp(popUpAcitive);
+//   }
+// };
 
 //popup - func
-const openPopUp = (popup) => {
-  popup.classList.add('pop-up_active');
-  document.addEventListener('keydown', closedPopUpEsc);
-};
+// const openPopUp = (popup) => {
+//   popup.classList.add('pop-up_active');
+//   document.addEventListener('keydown', closedPopUpEsc);
+// };
 
-const closePopUp = (popup) => {
-  popup.classList.remove('pop-up_active');
-  document.removeEventListener('keydown', closedPopUpEsc);
-};
+// const closePopUp = (popup) => {
+//   popup.classList.remove('pop-up_active');
+//   document.removeEventListener('keydown', closedPopUpEsc);
+// };
 
 // cards - func
 
@@ -154,9 +160,11 @@ popUpList.forEach((popUpElement) => {
   popUpElement.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('pop-up_active')) {
       closePopUp(popUpElement);
+      console.log('Hello')
     }
     if (evt.target.classList.contains('pop-up__close')) {
       closePopUp(popUpElement);
+      console.log('Helloooooo')
     }
   });
 });
