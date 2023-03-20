@@ -2,10 +2,10 @@ import Card from './Card.js'
 
 
 export default class Section {
-    constructor({ items, renderer }, containerSelector) {
-      this._renderedItems = items;
+    constructor({ data, renderer }, cardsContainer) {
+      this._renderedItems = data;
       this._renderer = renderer;
-      this._container = document.querySelector(containerSelector);
+      this._container = cardsContainer;
     }
   
     setItem(element) {
