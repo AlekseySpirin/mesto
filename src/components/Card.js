@@ -1,5 +1,5 @@
-export default class Card {
-  constructor(data, cardTemplate, handleCardClick) {
+class Card {
+  constructor(data, cardTemplate, { handleCardClick }) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = cardTemplate;
@@ -31,8 +31,11 @@ export default class Card {
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');
     });
+
     this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
   }
 }
+
+export default Card;
