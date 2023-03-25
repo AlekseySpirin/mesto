@@ -48,7 +48,15 @@ const handlePlaceFormSubmit = () => {
       link: placeInputLink.value,
     },
     cardTemplate,
-    handleCardClick,
+    {
+      handleCardClick: (name, link) => {
+        popUpTitleImg.textContent = name;
+        popUpImg.src = link;
+        popUpImg.alt = name;
+
+        popupImage.open(name, link);
+      },
+    },
   );
   const cardElement = cardInsert.generateCard();
   cardsContainer.prepend(cardElement);
@@ -58,19 +66,19 @@ const handlePlaceFormSubmit = () => {
 
 // CARD -func
 
-const handleCardClick = (name, link) => {
-  popUpTitleImg.textContent = name;
-  popUpImg.src = link;
-  popUpImg.alt = name;
-
-  popupImage.open(name, link);
-};
-
 const cardList = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      const card = new Card(item, cardTemplate, { handleCardClick });
+      const card = new Card(item, cardTemplate, {
+        handleCardClick: (name, link) => {
+          popUpTitleImg.textContent = name;
+          popUpImg.src = link;
+          popUpImg.alt = name;
+
+          popupImage.open(name, link);
+        },
+      });
 
       const cardElement = card.generateCard();
 
