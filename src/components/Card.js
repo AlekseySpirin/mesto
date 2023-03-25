@@ -1,5 +1,5 @@
-export default class Card {
-  constructor(data, cardTemplate, handleCardClick) {
+class Card {
+  constructor(data, cardTemplate, { handleCardClick }) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = cardTemplate;
@@ -24,15 +24,6 @@ export default class Card {
     return this._element;
   }
 
-  // _handleOpenPopup() {
-  //   popupImage.src = this._image;
-  //   popupElement.classList.add('popup_is-opened');
-  // }
-
-  // _handleClosePopup() {
-  //   popupImage.src = '';
-  //   popupElement.classList.remove('popup_is-opened');
-  // }
   _setEventListener() {
     this._cardTrash.addEventListener('click', () => {
       this._element.remove();
@@ -40,10 +31,11 @@ export default class Card {
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');
     });
-    
+
     this._cardImg.addEventListener('click', () => {
-      console.log(this._cardImg)
       this._handleCardClick(this._name, this._link);
     });
   }
 }
+
+export default Card;

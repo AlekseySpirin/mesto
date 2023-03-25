@@ -4,27 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <header class="header">
       <picture class="logo">
         <source srcset="./images/svg/logo320.svg" media="(max-width: 375px)" />
-        <img src="./images/svg/logo.svg" alt="Логотип" />
+        <img src="<%=require('./images/svg/logo.svg')%>" />" alt="Логотип" />
       </picture>
     </header>
     <main class="main">
       <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар" />
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар" />
 
         <div class="profile__desc">
-          <button type="button" class="profile__edit-button"></button>
+          <button type="button" id="popupBtn" class="profile__edit-button profile_type_open"></button>
           <h1 class="profile__name">Жак-Ив Кусто</h1>
 
           <p class="profile__info">Исследователь океана</p>
         </div>
 
-        <button type="button" class="profile__add-button"></button>
+        <button type="button" id="popupBtn" class="profile__add-button profile_type_open"></button>
       </section>
       <section class="places">
         <ul class="cards"></ul>
