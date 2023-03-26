@@ -23,8 +23,8 @@ import {
   profileInputName,
   profileInputInfo,
   btnEditProfile,
-  popUpImg,
-  popUpTitleImg,
+  popUpImgSelector,
+  popUpTitleImgSelector,
 } from '../utils/constants.js';
 
 // FUNCTION===============================================================================================
@@ -43,7 +43,7 @@ const handleProfileFormSubmit = (userData) => {
 const createCard = ({ name, link }) => {
   const card = new Card({ name, link }, cardTemplate, {
     handleCardClick: (name, link) => {
-      popUpImg.open(name, link);
+      popupImage.open(name, link);
     },
   });
   return card.generateCard();
@@ -80,7 +80,7 @@ const cardList = new Section(
 cardList.renderItems();
 
 // IMG
-const popupImage = new PopupWithImage('.pop-up_place_img');
+const popupImage = new PopupWithImage('.pop-up_place_img', popUpImgSelector, popUpTitleImgSelector);
 popupImage.setEventListeners();
 
 // POPUP-FORM-PLACE

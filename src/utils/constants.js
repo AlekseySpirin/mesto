@@ -77,5 +77,5 @@ export const btnEditProfileSelector = '.profile__edit-button';
 // POP-UP // IMG //
 
 export const popUpPlaceImg = document.querySelector('.pop-up_place_img');
-export const popUpImg = document.querySelector('.pop-up__img');
-export const popUpTitleImg = document.querySelector('.pop-up__title-img');
+export const popUpImgSelector = '.pop-up__img';
+export const popUpTitleImgSelector = '.pop-up__title-img';
