@@ -21,7 +21,7 @@ import {
   placeInputName,
   placeInputLink,
   profileInputName,
-  profileInputJob,
+  profileInputInfo,
   btnEditProfile,
   popUpImg,
   popUpTitleImg,
@@ -31,35 +31,28 @@ import {
 
 // PROFILE - func
 
-const handleProfileFormSubmit = () => {
+const handleProfileFormSubmit = (userData) => {
   formValidators['edit-profile'].disableSubmitButton();
 
-  userProfileInfo.setUserInfo({ name: profileInputName.value, info: profileInputJob.value });
-
+  userProfileInfo.setUserInfo(userData);
+  console.log(document.querySelector('.profile__info'));
   formProfile.close();
 };
 
 // PLACE -func
-
-const handlePlaceFormSubmit = () => {
-  const cardInsert = new Card(
-    {
-      name: placeInputName.value,
-      link: placeInputLink.value,
+const createCard = ({ name, link }) => {
+  const card = new Card({ name, link }, cardTemplate, {
+    handleCardClick: (name, link) => {
+      popUpImg.open(name, link);
     },
-    cardTemplate,
-    {
-      handleCardClick: (name, link) => {
-        popUpTitleImg.textContent = name;
-        popUpImg.src = link;
-        popUpImg.alt = name;
+  });
+  return card.generateCard();
+};
 
-        popupImage.open(name, link);
-      },
-    },
-  );
-  const cardElement = cardInsert.generateCard();
-  cardsContainer.prepend(cardElement);
+const handlePlaceFormSubmit = (formData) => {
+  const cardElement = createCard({ name: formData.place, link: formData.link });
+  cardList.addItem(cardElement);
+
   formPlace.close();
   formValidators['add-place'].resetValidation();
 };
@@ -72,17 +65,13 @@ const cardList = new Section(
     renderer: (item) => {
       const card = new Card(item, cardTemplate, {
         handleCardClick: (name, link) => {
-          popUpTitleImg.textContent = name;
-          popUpImg.src = link;
-          popUpImg.alt = name;
-
           popupImage.open(name, link);
         },
       });
 
       const cardElement = card.generateCard();
 
-      cardList.setItem(cardElement);
+      cardList.addItem(cardElement);
     },
   },
   cardsContainer,
@@ -99,6 +88,7 @@ popupImage.setEventListeners();
 const formPlace = new PopupWithForm(popupPlaceSelector, placeFormSelector, inputSelector, handlePlaceFormSubmit);
 formPlace.setEventListeners();
 
+console.log(document.querySelector('.card__title'));
 // POPUP-FORM-PROFILE
 
 const formProfile = new PopupWithForm(
@@ -116,7 +106,7 @@ const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
 btnEditProfile.addEventListener('click', () => {
   const user = userProfileInfo.getUserInfo();
   profileInputName.value = user.name;
-  profileInputJob.value = user.info;
+  profileInputInfo.value = user.info;
 
   formProfile.open();
 });

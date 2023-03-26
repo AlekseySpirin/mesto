@@ -59,7 +59,7 @@ export const placeInputLink = placeForm.querySelector('.form__item_el_link');
 export const formSelectorProfile = '.form_place_edit-profile';
 export const profileForm = document.querySelector('.form_place_edit-profile');
 export const profileInputName = profileForm.querySelector('.form__item_el_name');
-export const profileInputJob = profileForm.querySelector('.form__item_el_job');
+export const profileInputInfo = profileForm.querySelector('.form__item_el_info');
 
 // POP-UP // PROFILE //
 export const popUpProfileSelector = '.pop-up_place_profile';
