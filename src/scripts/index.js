@@ -35,7 +35,7 @@ const handleProfileFormSubmit = (userData) => {
   formValidators['edit-profile'].disableSubmitButton();
 
   userProfileInfo.setUserInfo(userData);
-  console.log(document.querySelector('.profile__info'));
+
   formProfile.close();
 };
 
@@ -62,14 +62,8 @@ const handlePlaceFormSubmit = (formData) => {
 const cardList = new Section(
   {
     data: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, cardTemplate, {
-        handleCardClick: (name, link) => {
-          popupImage.open(name, link);
-        },
-      });
-
-      const cardElement = card.generateCard();
+    renderer: (itemData) => {
+      const cardElement = createCard({ name: itemData.name, link: itemData.link });
 
       cardList.addItem(cardElement);
     },
@@ -88,7 +82,6 @@ popupImage.setEventListeners();
 const formPlace = new PopupWithForm(popupPlaceSelector, placeFormSelector, inputSelector, handlePlaceFormSubmit);
 formPlace.setEventListeners();
 
-console.log(document.querySelector('.card__title'));
 // POPUP-FORM-PROFILE
 
 const formProfile = new PopupWithForm(

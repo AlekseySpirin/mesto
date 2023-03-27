@@ -28,7 +28,6 @@ class Card {
     this._cardTrash.addEventListener('click', () => {
       this._element.remove();
       this._element = null;
-      console.log(document.querySelector('.profile__info'));
     });
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');
