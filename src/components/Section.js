@@ -5,8 +5,8 @@ class Section {
     this._container = cardsContainer;
   }
 
-  setItem(element) {
-    this._container.append(element);
+  addItem(element) {
+    this._container.prepend(element);
   }
 
   clear() {

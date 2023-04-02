@@ -27,6 +27,7 @@ class Card {
   _setEventListener() {
     this._cardTrash.addEventListener('click', () => {
       this._element.remove();
+      this._element = null;
     });
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');

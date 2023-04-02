@@ -59,7 +59,7 @@ export const placeInputLink = placeForm.querySelector('.form__item_el_link');
 export const formSelectorProfile = '.form_place_edit-profile';
 export const profileForm = document.querySelector('.form_place_edit-profile');
 export const profileInputName = profileForm.querySelector('.form__item_el_name');
-export const profileInputJob = profileForm.querySelector('.form__item_el_job');
+export const profileInputInfo = profileForm.querySelector('.form__item_el_info');
 
 // POP-UP // PROFILE //
 export const popUpProfileSelector = '.pop-up_place_profile';
@@ -77,5 +77,5 @@ export const btnEditProfileSelector = '.profile__edit-button';
 // POP-UP // IMG //
 
 export const popUpPlaceImg = document.querySelector('.pop-up_place_img');
-export const popUpImg = document.querySelector('.pop-up__img');
-export const popUpTitleImg = document.querySelector('.pop-up__title-img');
+export const popUpImgSelector = '.pop-up__img';
+export const popUpTitleImgSelector = '.pop-up__title-img';
