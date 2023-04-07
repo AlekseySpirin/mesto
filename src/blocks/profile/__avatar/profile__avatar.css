@@ -1,8 +1,17 @@
 .profile__avatar {
   border-radius: 50%;
   height: 120px;
-
+  transition: 0.4s ease;
   grid-area: avatar;
+  position: relative;
+  background-image: url(../../../images/avatar.jpg);
+  background-size: cover;
+}
+
+.profile__avatar:hover {
+  opacity: 0.2;
+
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
