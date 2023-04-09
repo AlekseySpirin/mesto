@@ -18,8 +18,7 @@ import {
   profileNameSelector,
   profileInfoSelector,
   btnPlaceAdd,
-  placeInputName,
-  placeInputLink,
+  btnEditAvatar,
   profileInputName,
   profileInputInfo,
   btnEditProfile,
@@ -95,6 +94,9 @@ formProfile.setEventListeners();
 const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
 
 // LISTENERS //==============================================================================
+btnEditAvatar.addEventListener('click', () => {
+  console.log('Уху');
+});
 
 btnEditProfile.addEventListener('click', () => {
   const user = userProfileInfo.getUserInfo();

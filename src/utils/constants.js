@@ -62,6 +62,7 @@ export const profileInputName = profileForm.querySelector('.form__item_el_name')
 export const profileInputInfo = profileForm.querySelector('.form__item_el_info');
 
 // POP-UP // PROFILE //
+
 export const popUpProfileSelector = '.pop-up_place_profile';
 export const popUpProfile = document.querySelector('.pop-up_place_profile');
 export const profile = document.querySelector('.profile');
@@ -71,7 +72,7 @@ export const profileNameSelector = '.profile__name';
 export const profileInfoSelector = '.profile__info';
 
 // BTN-EDIT // PROFILE
-
+export const btnEditAvatar = document.querySelector('.profile__avatar');
 export const btnEditProfile = profile.querySelector('.profile__edit-button');
 export const btnEditProfileSelector = '.profile__edit-button';
 // POP-UP // IMG //
