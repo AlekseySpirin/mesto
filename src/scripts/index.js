@@ -30,6 +30,26 @@ import {
 
 // FUNCTION===============================================================================================
 
+fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
+  headers: {
+    authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
+fetch('https://nomoreparties.co/v1/cohort-63/users/me ', {
+  headers: {
+    authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
 // PROFILE - func
 
 const handleProfileFormSubmit = (userData) => {
@@ -112,7 +132,6 @@ const formUpdateAvatar = new PopupWithForm(
   handleAvatarFormSubmit,
 );
 formUpdateAvatar.setEventListeners();
-console.dir(document.querySelector('.profile__avatar'));
 
 // LISTENERS //==============================================================================
 btnEditAvatar.addEventListener('click', () => {
