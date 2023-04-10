@@ -24,6 +24,8 @@ import {
   btnEditProfile,
   popUpImgSelector,
   popUpTitleImgSelector,
+  popupAvatarSelector,
+  formAvatarSelector,
 } from '../utils/constants.js';
 
 // FUNCTION===============================================================================================
@@ -93,9 +95,28 @@ formProfile.setEventListeners();
 
 const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
 
+// AVATAR
+
+const handleAvatarFormSubmit = (formData) => {
+  const avatarContainer = document.getElementById('avatar');
+  avatarContainer.style.backgroundImage = `url(${formData.link})`;
+
+  formUpdateAvatar.close();
+  formValidators['update-avatar'].resetValidation();
+};
+
+const formUpdateAvatar = new PopupWithForm(
+  popupAvatarSelector,
+  formAvatarSelector,
+  inputSelector,
+  handleAvatarFormSubmit,
+);
+formUpdateAvatar.setEventListeners();
+console.dir(document.querySelector('.profile__avatar'));
+
 // LISTENERS //==============================================================================
 btnEditAvatar.addEventListener('click', () => {
-  console.log('Уху');
+  formUpdateAvatar.open();
 });
 
 btnEditProfile.addEventListener('click', () => {

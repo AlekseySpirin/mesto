@@ -60,6 +60,8 @@ export const formSelectorProfile = '.form_place_edit-profile';
 export const profileForm = document.querySelector('.form_place_edit-profile');
 export const profileInputName = profileForm.querySelector('.form__item_el_name');
 export const profileInputInfo = profileForm.querySelector('.form__item_el_info');
+export const popupAvatarSelector = '.pop-up_place_update-avatar';
+export const formAvatarSelector = '.form_place_update-avatar';
 
 // POP-UP // PROFILE //
 
