@@ -13,10 +13,10 @@ class Section {
     this._container.innerHTML = '';
   }
 
-  renderItems() {
+  renderItems(cards) {
     this.clear();
 
-    this._renderedItems.forEach((item) => {
+    cards.forEach((item) => {
       this._renderer(item);
     });
   }

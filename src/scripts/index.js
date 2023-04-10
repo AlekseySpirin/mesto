@@ -5,8 +5,8 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import {
-  initialCards,
   formConfig,
   popUpProfileSelector,
   popupPlaceSelector,
@@ -26,29 +26,47 @@ import {
   popUpTitleImgSelector,
   popupAvatarSelector,
   formAvatarSelector,
+  initialCards,
+  // initialCards,
 } from '../utils/constants.js';
 
 // FUNCTION===============================================================================================
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
-  headers: {
-    authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-63',
+  headers: { authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f', 'Content-Type': 'application/json' },
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cardList.renderItems(cards);
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
-fetch('https://nomoreparties.co/v1/cohort-63/users/me ', {
-  headers: {
-    authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+console.log(api);
+
+// fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
+//   headers: {
+//     authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
+
+// fetch('https://nomoreparties.co/v1/cohort-63/users/me ', {
+//   headers: {
+//     authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
+//   },
+// })
+//   .then((res) => res.json())
+//   .then((result) => {
+//     console.log(result);
+//   });
 
 // PROFILE - func
 
@@ -91,8 +109,8 @@ const cardList = new Section(
   },
   cardsContainer,
 );
-
-cardList.renderItems();
+console.log(cardList);
+// cardList.renderItems();
 
 // IMG
 const popupImage = new PopupWithImage('.pop-up_place_img', popUpImgSelector, popUpTitleImgSelector);
