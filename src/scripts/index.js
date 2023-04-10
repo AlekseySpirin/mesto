@@ -27,6 +27,7 @@ import {
   popupAvatarSelector,
   formAvatarSelector,
   initialCards,
+  avatarId,
   // initialCards,
 } from '../utils/constants.js';
 
@@ -131,8 +132,28 @@ const formProfile = new PopupWithForm(
 );
 formProfile.setEventListeners();
 
-const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
+// USER-INFO
 
+const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
+
+api
+  .getServerUserInfo()
+  .then((info) => {
+    console.log(info);
+    userProfileInfo.getUserInfo(info);
+    userProfileInfo.setUserInfo({
+      info: info.about,
+      avatar: info.avatar,
+      cohort: info.cohort,
+      name: info.name,
+      id: info.id,
+    });
+    console.log(userProfileInfo.getUserInfo(info));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+console.log(userProfileInfo);
 // AVATAR
 
 const handleAvatarFormSubmit = (formData) => {

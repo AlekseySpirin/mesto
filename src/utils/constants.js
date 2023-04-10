@@ -74,6 +74,7 @@ export const profileNameSelector = '.profile__name';
 export const profileInfoSelector = '.profile__info';
 
 // BTN-EDIT // PROFILE
+export const avatarId = 'avatar';
 export const btnEditAvatar = document.querySelector('.profile__avatar');
 export const btnEditProfile = profile.querySelector('.profile__edit-button');
 export const btnEditProfileSelector = '.profile__edit-button';
