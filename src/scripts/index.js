@@ -26,86 +26,54 @@ import {
   popUpTitleImgSelector,
   popupAvatarSelector,
   formAvatarSelector,
-  initialCards,
   avatarId,
   avatarContainer,
   // initialCards,
 } from '../utils/constants.js';
 
-// FUNCTION===============================================================================================
-
+// API
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-63',
   headers: { authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f', 'Content-Type': 'application/json' },
 });
 
+// CARDS
+
+const createCard = (data) => {
+  const card = new Card(
+    data,
+    userId,
+    cardTemplate,
+    {
+      handleCardClick: (name, link) => {
+        popupImage.open(name, link);
+      },
+    },
+    () => {
+      popupDeleteCard.open();
+      popupDeleteCard.setSubmitAction(() => {
+        api.deleteCard(data._id).then(() => {
+          card.deleteCard();
+        });
+      });
+    },
+  );
+  return card.generateCard();
+};
+
+// отображение карточек
 api
   .getInitialCards()
   .then((cards) => {
+    console.log(cards);
     cardList.renderItems(cards);
   })
   .catch((err) => {
     console.log(err);
   });
 
-console.log(api);
-
-// fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
-//   headers: {
-//     authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
-
-// fetch('https://nomoreparties.co/v1/cohort-63/users/me ', {
-//   headers: {
-//     authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f',
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
-
-// PROFILE - func
-
-const handleProfileFormSubmit = (userData) => {
-  formValidators['edit-profile'].disableSubmitButton();
-  api
-    .editServerProfile(userData)
-    .then((user) => {
-      console.log(user);
-      console.log(userProfileInfo);
-      userProfileInfo.setUserInfo({ name: user.name, info: user.about, avatar: user.avatar });
-      console.log(userProfileInfo);
-
-      console.log(user);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  // userProfileInfo.setUserInfo(userData);
-
-  formProfile.close();
-};
-
-// PLACE -func
-const createCard = ({ name, link }) => {
-  const card = new Card({ name, link }, cardTemplate, {
-    handleCardClick: (name, link) => {
-      popupImage.open(name, link);
-    },
-  });
-  return card.generateCard();
-};
-
+// Добавление одной карточки
 const handlePlaceFormSubmit = (formData) => {
-  // const cardElement = createCard({ name: formData.place, link: formData.link });
-  // cardList.addItem(cardElement);
-
   api
     .addCardServer(formData)
     .then((card) => {
@@ -120,21 +88,41 @@ const handlePlaceFormSubmit = (formData) => {
   formValidators['add-place'].resetValidation();
 };
 
-// CARD -func
+// SECTION CARDS
 
 const cardList = new Section(
   {
-    data: initialCards,
     renderer: (itemData) => {
-      const cardElement = createCard({ name: itemData.name, link: itemData.link });
+      const cardElement = createCard({
+        name: itemData.name,
+        link: itemData.link,
+        likes: itemData.likes,
+        cardId: itemData._id,
+        ownerId: itemData.owner._id,
+      });
 
       cardList.addItem(cardElement);
     },
   },
   cardsContainer,
 );
-console.log(cardList);
-// cardList.renderItems();
+
+// PROFILE - func
+
+const handleProfileFormSubmit = (userData) => {
+  formValidators['edit-profile'].disableSubmitButton();
+  api
+    .editServerProfile(userData)
+    .then((user) => {
+      userProfileInfo.setUserInfo({ name: user.name, info: user.about, avatar: user.avatar });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // userProfileInfo.setUserInfo(userData);
+
+  formProfile.close();
+};
 
 // IMG
 const popupImage = new PopupWithImage('.pop-up_place_img', popUpImgSelector, popUpTitleImgSelector);
@@ -158,11 +146,13 @@ formProfile.setEventListeners();
 // USER-INFO
 
 const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
-// avatarId;
 
+let userId = null;
 api
   .getServerUserInfo()
   .then((info) => {
+    userId = info._id;
+    console.log(userId);
     console.log(info);
     // userProfileInfo.getUserInfo(info);
     userProfileInfo.setUserInfo({
@@ -170,37 +160,32 @@ api
       avatar: info.avatar,
       cohort: info.cohort,
       name: info.name,
-      id: info.id,
+      id: info._id,
     });
-
+    console.log(userProfileInfo);
     // console.log(userProfileInfo.setUserInfo(info));
   })
   .catch((err) => {
     console.log(err);
   });
-console.log(userProfileInfo);
+console.dir(userProfileInfo);
+
 // AVATAR
 
 const handleAvatarFormSubmit = (formData) => {
-  // const avatarContainer = document.getElementById('avatar');
-  // avatarContainer.style.backgroundImage = `url(${formData.link})`;
   api
     .editAvatar(formData)
     .then((avatar) => {
-      console.log(avatar);
-      console.log(avatar.avatar);
-      // const avatarContainer = document.getElementById('avatar');
       avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
-      console.dir(avatarContainer.style.backgroundImage);
     })
     .catch((err) => {
       console.log(err);
     });
-  console.dir(avatarContainer);
+
   formUpdateAvatar.close();
   formValidators['update-avatar'].resetValidation();
 };
-console.dir(avatarContainer);
+
 const formUpdateAvatar = new PopupWithForm(
   popupAvatarSelector,
   formAvatarSelector,
