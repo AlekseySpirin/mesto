@@ -28,6 +28,7 @@ import {
   formAvatarSelector,
   initialCards,
   avatarId,
+  avatarContainer,
   // initialCards,
 } from '../utils/constants.js';
 
@@ -77,11 +78,16 @@ const handleProfileFormSubmit = (userData) => {
     .editServerProfile(userData)
     .then((user) => {
       console.log(user);
+      console.log(userProfileInfo);
+      userProfileInfo.setUserInfo({ name: user.name, info: user.about, avatar: user.avatar });
+      console.log(userProfileInfo);
+
+      console.log(user);
     })
     .catch((err) => {
       console.log(err);
     });
-  userProfileInfo.setUserInfo(userData);
+  // userProfileInfo.setUserInfo(userData);
 
   formProfile.close();
 };
@@ -151,7 +157,7 @@ formProfile.setEventListeners();
 
 // USER-INFO
 
-const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
+const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
 // avatarId;
 
 api
@@ -166,7 +172,7 @@ api
       name: info.name,
       id: info.id,
     });
-    console.log(userProfileInfo.getUserInfo(info));
+
     // console.log(userProfileInfo.setUserInfo(info));
   })
   .catch((err) => {
@@ -174,7 +180,7 @@ api
   });
 console.log(userProfileInfo);
 // AVATAR
-const avatarContainer = document.getElementById('avatar');
+
 const handleAvatarFormSubmit = (formData) => {
   // const avatarContainer = document.getElementById('avatar');
   // avatarContainer.style.backgroundImage = `url(${formData.link})`;

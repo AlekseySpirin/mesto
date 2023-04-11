@@ -16,10 +16,10 @@ class UserInfo {
       // id: data._id,
     };
   }
-  setUserInfo({ name, info }) {
+  setUserInfo({ name, info, avatar }) {
     this._name.textContent = name;
     this._info.textContent = info;
-    // this._avatar.style.backgroundImage = `url(${avatar})`;
+    this._avatar.style.backgroundImage = `url(${avatar})`;
   }
 }
 

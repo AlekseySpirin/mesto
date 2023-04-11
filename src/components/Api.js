@@ -5,6 +5,7 @@ class Api {
   }
   getInitialCards() {
     return fetch(`${this.url}/cards`, {
+      method: 'GET',
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
@@ -15,6 +16,7 @@ class Api {
   }
   getServerUserInfo() {
     return fetch(`${this.url}/users/me`, {
+      method: 'GET',
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
