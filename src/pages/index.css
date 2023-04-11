@@ -33,6 +33,8 @@
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__like/_active/card__like_active.css);
 @import url(../blocks/card/__trash/card__trash.css);
+@import url(../blocks/card/__like/_el/card__like_el_count.css);
+@import url(../blocks/card/__likes-container/card__likes-container.css);
 
 /* footer */
 
