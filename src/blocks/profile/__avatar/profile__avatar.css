@@ -5,7 +5,7 @@
   transition: 0.4s ease;
   grid-area: avatar;
   position: relative;
-  background-image: url(../../../images/avatar.jpg);
+  /* background-image: url(../../../images/avatar.jpg); */
   background-size: cover;
   z-index: 0;
   cursor: pointer;

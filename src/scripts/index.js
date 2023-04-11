@@ -174,15 +174,27 @@ api
   });
 console.log(userProfileInfo);
 // AVATAR
-
+const avatarContainer = document.getElementById('avatar');
 const handleAvatarFormSubmit = (formData) => {
-  const avatarContainer = document.getElementById('avatar');
-  avatarContainer.style.backgroundImage = `url(${formData.link})`;
-
+  // const avatarContainer = document.getElementById('avatar');
+  // avatarContainer.style.backgroundImage = `url(${formData.link})`;
+  api
+    .editAvatar(formData)
+    .then((avatar) => {
+      console.log(avatar);
+      console.log(avatar.avatar);
+      // const avatarContainer = document.getElementById('avatar');
+      avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
+      console.dir(avatarContainer.style.backgroundImage);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  console.dir(avatarContainer);
   formUpdateAvatar.close();
   formValidators['update-avatar'].resetValidation();
 };
-
+console.dir(avatarContainer);
 const formUpdateAvatar = new PopupWithForm(
   popupAvatarSelector,
   formAvatarSelector,
