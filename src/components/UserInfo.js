@@ -6,17 +6,20 @@ class UserInfo {
   }
   getUserInfo(data) {
     return {
-      info: data.about,
-      avatar: data.avatar,
-      cohort: data.cohort,
-      name: data.name,
-      id: data._id,
+      name: this._name.textContent,
+      info: this._info.textContent,
+
+      // info: data.about,
+      // avatar: data.avatar,
+      // cohort: data.cohort,
+      // name: data.name,
+      // id: data._id,
     };
   }
-  setUserInfo({ name, info, avatar }) {
+  setUserInfo({ name, info }) {
     this._name.textContent = name;
     this._info.textContent = info;
-    this._avatar.style.backgroundImage = `url(${avatar})`;
+    // this._avatar.style.backgroundImage = `url(${avatar})`;
   }
 }
 

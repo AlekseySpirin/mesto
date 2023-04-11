@@ -73,7 +73,14 @@ console.log(api);
 
 const handleProfileFormSubmit = (userData) => {
   formValidators['edit-profile'].disableSubmitButton();
-
+  api
+    .editServerProfile(userData)
+    .then((user) => {
+      console.log(user);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   userProfileInfo.setUserInfo(userData);
 
   formProfile.close();
@@ -90,8 +97,18 @@ const createCard = ({ name, link }) => {
 };
 
 const handlePlaceFormSubmit = (formData) => {
-  const cardElement = createCard({ name: formData.place, link: formData.link });
-  cardList.addItem(cardElement);
+  // const cardElement = createCard({ name: formData.place, link: formData.link });
+  // cardList.addItem(cardElement);
+
+  api
+    .addCardServer(formData)
+    .then((card) => {
+      console.log(card);
+      cardList.addItem(createCard(card));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   formPlace.close();
   formValidators['add-place'].resetValidation();
@@ -134,13 +151,14 @@ formProfile.setEventListeners();
 
 // USER-INFO
 
-const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
+const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector);
+// avatarId;
 
 api
   .getServerUserInfo()
   .then((info) => {
     console.log(info);
-    userProfileInfo.getUserInfo(info);
+    // userProfileInfo.getUserInfo(info);
     userProfileInfo.setUserInfo({
       info: info.about,
       avatar: info.avatar,
@@ -149,6 +167,7 @@ api
       id: info.id,
     });
     console.log(userProfileInfo.getUserInfo(info));
+    // console.log(userProfileInfo.setUserInfo(info));
   })
   .catch((err) => {
     console.log(err);

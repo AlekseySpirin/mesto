@@ -23,6 +23,31 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
+
+  editServerProfile(userData) {
+    return fetch(`${this.url}/users/me`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({ name: userData.name, about: userData.info }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+  addCardServer(formData) {
+    return fetch(`${this.url}/cards`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({ name: formData.place, link: formData.link, likes: formData.likes }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
 }
 
 export default Api;
