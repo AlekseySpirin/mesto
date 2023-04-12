@@ -1,12 +1,16 @@
 import Popup from './Popup.js';
 
 class PopupWithConfirm extends Popup {
-  constructor(popupSelector, handleSubmitCallback) {
+  constructor(popupSelector) {
     super(popupSelector);
     this._form = this._popup.querySelector('.form_place_delete-card');
     this._btnDelete = this._popup.querySelector('.pop-up__button_place_delete-card');
-    this._handleSubmitCallback = handleSubmitCallback;
   }
+
+  setSubmitAction(action) {
+    this._handleSubmitCallback = action;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
@@ -14,10 +18,6 @@ class PopupWithConfirm extends Popup {
       this._handleSubmitCallback();
       this.close();
     });
-  }
-
-  setSubmitAction(action) {
-    this._handleSubmitCallback = action;
   }
 }
 

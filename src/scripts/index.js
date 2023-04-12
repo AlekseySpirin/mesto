@@ -72,13 +72,16 @@ const createCard = (data) => {
         popupImage.open(name, link);
       },
     },
-    () => {
-      deleteCardPopup.open();
-      deleteCardPopup.setSubmitAction(() => {
-        api.deleteCardServer(data._id).then(() => {
-          card.deleteCard();
+    {
+      handleRemoveButtonClick: (card) => {
+        deleteCardPopup.open();
+        deleteCardPopup.setSubmitAction(() => {
+          console.log(card._cardId);
+          api.deleteCardServer(card._cardId).then(() => {
+            card.deleteCard();
+          });
         });
-      });
+      },
     },
   );
   return card.generateCard();
