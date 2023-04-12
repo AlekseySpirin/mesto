@@ -63,6 +63,8 @@ console.log(userId);
 // CARDS
 
 const createCard = (data) => {
+  console.log(data);
+  console.log(userId);
   const card = new Card(
     data,
     userId,
@@ -77,27 +79,57 @@ const createCard = (data) => {
         deleteCardPopup.open();
         deleteCardPopup.setSubmitAction(() => {
           console.log(card._cardId);
-          api.deleteCardServer(card._cardId).then(() => {
-            card.deleteCard();
-          });
+          api
+            .deleteCardServer(card._cardId)
+            .then(() => {
+              card.deleteCard();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
       },
     },
+    {
+      handleClickLikes: () => {
+        if (data.likes.some((user) => user._id === userId)) {
+          api
+            .deleteLikeServer(data.cardId)
+            .then((res) => {
+              card.deleteLike();
+              data.likes = res.likes;
+              card.countLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          api
+            .addLikeServer(data.cardId)
+            .then((res) => {
+              card.addLike();
+              data.likes = res.likes;
+              card.countLikes(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      },
+    },
   );
+  // console.log(card);
   return card.generateCard();
 };
 
-// отображение карточек
 // api
-//   .getInitialCards()
-//   .then((cards) => {
-//     console.log(cards);
-//     cardList.renderItems(cards.reverse());
+//   .addLikeServer('6436ed0e80c0a04a3403d9b9')
+//   .then((res) => {
+//     console.log(`'лайкнул${res}'`);
 //   })
 //   .catch((err) => {
-//     console.log(err);
+//     console.log(`'yt лайкнул${err}'`);
 //   });
-
 // Добавление одной карточки
 const handlePlaceFormSubmit = (formData) => {
   api
@@ -148,7 +180,6 @@ const handleProfileFormSubmit = (userData) => {
     .catch((err) => {
       console.log(err);
     });
-  // userProfileInfo.setUserInfo(userData);
 
   formProfile.close();
 };
@@ -175,26 +206,6 @@ formProfile.setEventListeners();
 // USER-INFO
 
 const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
-
-// api
-//   .getServerUserInfo()
-//   .then((info) => {
-//     userId = info._id;
-//     console.log(userId);
-//     console.log(info);
-
-//     userProfileInfo.setUserInfo({
-//       info: info.about,
-//       name: info.name,
-//       id: info._id,
-//     });
-//     userProfileInfo.setUserAvatar({ avatar: info.avatar });
-//     console.log(userProfileInfo);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-// console.dir(userProfileInfo);
 
 // AVATAR
 
