@@ -114,7 +114,7 @@ const handleProfileFormSubmit = (userData) => {
   api
     .editServerProfile(userData)
     .then((user) => {
-      userProfileInfo.setUserInfo({ name: user.name, info: user.about, avatar: user.avatar });
+      userProfileInfo.setUserInfo({ name: user.name, info: user.about });
     })
     .catch((err) => {
       console.log(err);
@@ -157,11 +157,10 @@ api
     // userProfileInfo.getUserInfo(info);
     userProfileInfo.setUserInfo({
       info: info.about,
-      avatar: info.avatar,
-      cohort: info.cohort,
       name: info.name,
       id: info._id,
     });
+    userProfileInfo.setUserAvatar({ avatar: info.avatar });
     console.log(userProfileInfo);
     // console.log(userProfileInfo.setUserInfo(info));
   })
@@ -173,10 +172,14 @@ console.dir(userProfileInfo);
 // AVATAR
 
 const handleAvatarFormSubmit = (formData) => {
+  console.log(formData);
   api
     .editAvatar(formData)
     .then((avatar) => {
-      avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
+      console.log(avatar);
+      userProfileInfo.setUserAvatar({ avatar: avatar.avatar });
+
+      // avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
     })
     .catch((err) => {
       console.log(err);
