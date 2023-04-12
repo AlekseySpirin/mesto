@@ -6,9 +6,10 @@ class Card {
     this._handleCardClick = handleCardClick;
     this._likes = data.likes;
     this._cardId = data.cardId;
-    this._ownreId = data.ownerId;
-    this._popupDeleteCard = popupDeleteCard;
+    this._ownerId = data.ownerId;
+
     this._userId = userId;
+    this._popupDeleteCard = popupDeleteCard;
   }
 
   _getTemplate() {
@@ -29,6 +30,7 @@ class Card {
     this._cardTrash = this._element.querySelector('.card__trash');
     this._cardLike = this._element.querySelector('.card__like');
     this._likesCounter = this._element.querySelector('.card__like_el_count');
+    this._likesCounter.textContent = this._likes.length;
     this._cardTitle.textContent = this._name;
     this._cardImg.src = this._link;
     this._cardImg.alt = this._name;
@@ -37,14 +39,17 @@ class Card {
     return this._element;
   }
 
+  deleteCard() {
+    this._element.remove();
+    this._element = null;
+  }
+
   _setEventListener() {
     this._cardTrash.addEventListener('click', () => {
-      this._element.remove();
-      this._element = null;
+      this._popupDeleteCard(this);
     });
     this._cardLike.addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like_active');
-      this._likesCounter.textContent = this._likes.length;
     });
 
     this._cardImg.addEventListener('click', () => {

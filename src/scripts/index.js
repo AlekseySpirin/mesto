@@ -6,6 +6,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import {
   formConfig,
   popUpProfileSelector,
@@ -37,6 +38,28 @@ const api = new Api({
   headers: { authorization: '6e9922b1-82bb-44b1-8c4a-e1a93da7bd0f', 'Content-Type': 'application/json' },
 });
 
+let userId = null;
+
+Promise.all([api.getServerUserInfo(), api.getInitialCards()])
+  .then(([info, cards]) => {
+    userId = info._id;
+    console.log(userId);
+    console.log(info);
+
+    userProfileInfo.setUserInfo({
+      info: info.about,
+      name: info.name,
+      id: info._id,
+    });
+    userProfileInfo.setUserAvatar({ avatar: info.avatar });
+    cardList.renderItems(cards.reverse());
+    console.log(userProfileInfo);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+console.log(userId);
+
 // CARDS
 
 const createCard = (data) => {
@@ -50,9 +73,9 @@ const createCard = (data) => {
       },
     },
     () => {
-      popupDeleteCard.open();
-      popupDeleteCard.setSubmitAction(() => {
-        api.deleteCard(data._id).then(() => {
+      deleteCardPopup.open();
+      deleteCardPopup.setSubmitAction(() => {
+        api.deleteCardServer(data._id).then(() => {
           card.deleteCard();
         });
       });
@@ -62,15 +85,15 @@ const createCard = (data) => {
 };
 
 // отображение карточек
-api
-  .getInitialCards()
-  .then((cards) => {
-    console.log(cards);
-    cardList.renderItems(cards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// api
+//   .getInitialCards()
+//   .then((cards) => {
+//     console.log(cards);
+//     cardList.renderItems(cards.reverse());
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 // Добавление одной карточки
 const handlePlaceFormSubmit = (formData) => {
@@ -87,6 +110,9 @@ const handlePlaceFormSubmit = (formData) => {
   formPlace.close();
   formValidators['add-place'].resetValidation();
 };
+
+const deleteCardPopup = new PopupWithConfirm('.pop-up_place_delete-card');
+deleteCardPopup.setEventListeners();
 
 // SECTION CARDS
 
@@ -147,27 +173,25 @@ formProfile.setEventListeners();
 
 const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, avatarId);
 
-let userId = null;
-api
-  .getServerUserInfo()
-  .then((info) => {
-    userId = info._id;
-    console.log(userId);
-    console.log(info);
-    // userProfileInfo.getUserInfo(info);
-    userProfileInfo.setUserInfo({
-      info: info.about,
-      name: info.name,
-      id: info._id,
-    });
-    userProfileInfo.setUserAvatar({ avatar: info.avatar });
-    console.log(userProfileInfo);
-    // console.log(userProfileInfo.setUserInfo(info));
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-console.dir(userProfileInfo);
+// api
+//   .getServerUserInfo()
+//   .then((info) => {
+//     userId = info._id;
+//     console.log(userId);
+//     console.log(info);
+
+//     userProfileInfo.setUserInfo({
+//       info: info.about,
+//       name: info.name,
+//       id: info._id,
+//     });
+//     userProfileInfo.setUserAvatar({ avatar: info.avatar });
+//     console.log(userProfileInfo);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+// console.dir(userProfileInfo);
 
 // AVATAR
 

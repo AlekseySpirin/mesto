@@ -52,11 +52,13 @@
 @import url(../blocks/pop-up/_active/pop-up_active.css);
 @import url(../blocks/pop-up/__close/pop-up__close.css);
 @import url(../blocks/pop-up/__close/_place/pop-up__close_place_update-avatar.css);
+@import url(../blocks/pop-up/__close/_place/pop-up__close_place_delete-card.css);
 
 @import url(../blocks/pop-up/__img/pop-up__img.css);
 @import url(../blocks/pop-up/__title-img/pop-up__title-img.css);
 @import url(../blocks/pop-up/__container/_place/pop-up__container_place_img.css);
 @import url(../blocks/pop-up/_place/pop-up_place_img.css);
+@import url(../blocks/pop-up/__button/_place/pop-up__button_place_delete-card.css);
 
 /* form */
 

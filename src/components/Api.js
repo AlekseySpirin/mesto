@@ -67,6 +67,18 @@ class Api {
     });
   }
 
+  deleteCardServer(cardId) {
+    return fetch(`${this.url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+
   addLike() {
     return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'PUT',

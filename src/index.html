@@ -8,8 +8,8 @@
   <body class="page">
     <header class="header">
       <picture class="logo">
-        <source srcset="./images/svg/logo320.svg" media="(max-width: 375px)" />
-        <img src="<%=require('./images/svg/logo.svg')%>" />" alt="Логотип" />
+        <source srcset="<%=require('./images/svg/logo320.svg')%>" media="(max-width: 375px)" />
+        <img src="<%=require('./images/svg/logo.svg')%>" alt="Логотип" />
       </picture>
     </header>
     <main class="main">
@@ -115,6 +115,15 @@
         <img class="pop-up__img" src="#" alt="#" />
         <h2 class="pop-up__title-img">Название</h2>
         <button type="button" class="pop-up__close pop-up__close_place_place"></button>
+      </div>
+    </div>
+    <div class="pop-up pop-up_place_delete-card">
+      <div class="pop-up__container pop-up__container_place_delete-card">
+        <form name="delete-card" action="#" class="form form_place_delete-card">
+          <h2 class="form__title">Вы уверены?</h2>
+          <button type="submit" class="pop-up__button pop-up__button_place_delete-card" disabled>Да</button>
+        </form>
+        <button type="button" class="pop-up__close pop-up__close_place_delete-card"></button>
       </div>
     </div>
     <template id="card-template" class="card-template">
