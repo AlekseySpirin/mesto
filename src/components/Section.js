@@ -1,6 +1,5 @@
 class Section {
-  constructor({ data, renderer }, cardsContainer) {
-    // this._renderedItems = data;
+  constructor({ renderer }, cardsContainer) {
     this._renderer = renderer;
     this._container = cardsContainer;
   }
