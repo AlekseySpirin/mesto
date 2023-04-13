@@ -62,8 +62,6 @@ console.log(userId);
 // CARDS
 
 const createCard = (data) => {
-  console.log(data);
-  console.log(userId);
   const card = new Card(
     data,
     userId,
@@ -132,6 +130,7 @@ const createCard = (data) => {
 // Добавление одной карточки
 const handlePlaceFormSubmit = (formData) => {
   formPlace.loadingButtonText('Создание...');
+
   api
     .addCardServer(formData)
     .then((card) => {
@@ -182,13 +181,13 @@ const handleProfileFormSubmit = (userData) => {
     .then((user) => {
       userProfileInfo.setUserInfo({ name: user.name, info: user.about });
       setTimeout(() => {
-        userProfileInfo.close();
+        formProfile.close();
       }, 500);
     })
     .catch((err) => {
       console.log(err);
     })
-    .finally(formProfile.loadingButtonText('Сохранить'));
+    .finally(() => formProfile.loadingButtonText('Сохранить'));
 };
 
 // IMG
@@ -225,7 +224,7 @@ const handleAvatarFormSubmit = (formData) => {
       console.log(avatar);
       userProfileInfo.setUserAvatar({ avatar: avatar.avatar });
       setTimeout(() => {
-        userProfileInfo.close();
+        formUpdateAvatar.close();
       }, 500);
 
       // avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
@@ -233,7 +232,7 @@ const handleAvatarFormSubmit = (formData) => {
     .catch((err) => {
       console.log(err);
     })
-    .finally(formUpdateAvatar.loadingButtonText('Сохранить'));
+    .finally(() => formUpdateAvatar.loadingButtonText('Сохранить'));
 
   formValidators['update-avatar'].resetValidation();
 };

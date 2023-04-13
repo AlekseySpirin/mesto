@@ -8,7 +8,7 @@ class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     this._input = inputSelector;
     this._inputList = this._formElement.querySelectorAll(this._input);
-    this.btnFormSubmit = this._formElement.querySelector('.pop-up__button');
+    this._btnFormSubmit = this._formElement.querySelector('.pop-up__button');
   }
 
   _getInputValues() {
@@ -22,7 +22,7 @@ class PopupWithForm extends Popup {
   }
 
   loadingButtonText(text) {
-    this.btnFormSubmit.textContent = text;
+    this._btnFormSubmit.textContent = text;
   }
   setEventListeners() {
     super.setEventListeners();
