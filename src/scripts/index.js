@@ -29,7 +29,6 @@ import {
   formAvatarSelector,
   avatarId,
   avatarContainer,
-  // initialCards,
 } from '../utils/constants.js';
 
 // API
@@ -132,17 +131,22 @@ const createCard = (data) => {
 //   });
 // Добавление одной карточки
 const handlePlaceFormSubmit = (formData) => {
+  formPlace.loadingButtonText('Создание...');
   api
     .addCardServer(formData)
     .then((card) => {
       console.log(card);
       cardList.addItem(createCard(card));
+      setTimeout(() => {
+        formPlace.close();
+      }, 500);
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => formPlace.loadingButtonText('Создать'));
 
-  formPlace.close();
+  // formPlace.close();
   formValidators['add-place'].resetValidation();
 };
 
@@ -172,16 +176,19 @@ const cardList = new Section(
 
 const handleProfileFormSubmit = (userData) => {
   formValidators['edit-profile'].disableSubmitButton();
+  formProfile.loadingButtonText('Сохранение...');
   api
     .editServerProfile(userData)
     .then((user) => {
       userProfileInfo.setUserInfo({ name: user.name, info: user.about });
+      setTimeout(() => {
+        userProfileInfo.close();
+      }, 500);
     })
     .catch((err) => {
       console.log(err);
-    });
-
-  formProfile.close();
+    })
+    .finally(formProfile.loadingButtonText('Сохранить'));
 };
 
 // IMG
@@ -211,19 +218,23 @@ const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, a
 
 const handleAvatarFormSubmit = (formData) => {
   console.log(formData);
+  formUpdateAvatar.loadingButtonText('Сохранение...');
   api
     .editAvatar(formData)
     .then((avatar) => {
       console.log(avatar);
       userProfileInfo.setUserAvatar({ avatar: avatar.avatar });
+      setTimeout(() => {
+        userProfileInfo.close();
+      }, 500);
 
       // avatarContainer.style.backgroundImage = `url(${avatar.avatar}})`;
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(formUpdateAvatar.loadingButtonText('Сохранить'));
 
-  formUpdateAvatar.close();
   formValidators['update-avatar'].resetValidation();
 };
 

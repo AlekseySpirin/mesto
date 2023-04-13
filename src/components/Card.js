@@ -70,10 +70,10 @@ class Card {
     }
   }
 
-  updateLikes(likes) {
-    this._likes = likes;
-    this._likesCounter.textContent = this._likes.length;
-  }
+  // updateLikes(likes) {
+  //   this._likes = likes;
+  //   this._likesCounter.textContent = this._likes.length;
+  // }
 
   deleteCard() {
     this._element.remove();
