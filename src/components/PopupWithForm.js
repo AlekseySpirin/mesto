@@ -8,6 +8,7 @@ class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     this._input = inputSelector;
     this._inputList = this._formElement.querySelectorAll(this._input);
+    this.btnFormSubmit = this._formElement.querySelector('.pop-up__button');
   }
 
   _getInputValues() {
@@ -20,14 +21,18 @@ class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  loadingButtonText(text) {
+    this.btnFormSubmit.textContent = text;
+  }
   setEventListeners() {
     super.setEventListeners();
 
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
+
       this._callbackSubmitForm(this._getInputValues());
 
-      this.close();
+      // this.close();
     });
   }
   close() {

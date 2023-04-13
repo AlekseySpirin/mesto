@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
 export const formConfig = {
   formSelector: '.form',
   inputSelector: '.form__item',
@@ -60,8 +33,11 @@ export const formSelectorProfile = '.form_place_edit-profile';
 export const profileForm = document.querySelector('.form_place_edit-profile');
 export const profileInputName = profileForm.querySelector('.form__item_el_name');
 export const profileInputInfo = profileForm.querySelector('.form__item_el_info');
+export const popupAvatarSelector = '.pop-up_place_update-avatar';
+export const formAvatarSelector = '.form_place_update-avatar';
 
 // POP-UP // PROFILE //
+
 export const popUpProfileSelector = '.pop-up_place_profile';
 export const popUpProfile = document.querySelector('.pop-up_place_profile');
 export const profile = document.querySelector('.profile');
@@ -71,7 +47,9 @@ export const profileNameSelector = '.profile__name';
 export const profileInfoSelector = '.profile__info';
 
 // BTN-EDIT // PROFILE
-
+export const avatarContainer = document.getElementById('avatar');
+export const avatarId = 'avatar';
+export const btnEditAvatar = document.querySelector('.profile__avatar');
 export const btnEditProfile = profile.querySelector('.profile__edit-button');
 export const btnEditProfileSelector = '.profile__edit-button';
 // POP-UP // IMG //
