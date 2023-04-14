@@ -140,6 +140,7 @@ const cardList = new Section(
 // POPUP-FORM-PLACE
 
 const handlePlaceFormSubmit = (formData) => {
+  formValidators['add-place'].disableSubmitButton();
   formPlace.loadingButtonText('Создание...');
 
   api
@@ -159,11 +160,10 @@ const handlePlaceFormSubmit = (formData) => {
       formPlace.close();
     })
     .catch((err) => {
+      formValidators['add-place'].enableSubmitButton();
       console.log(err);
     })
     .finally(() => formPlace.loadingButtonText('Создать'));
-
-  formValidators['add-place'].resetValidation();
 };
 
 const formPlace = new PopupWithForm(popupPlaceSelector, placeFormSelector, inputSelector, handlePlaceFormSubmit);
@@ -181,6 +181,7 @@ const handleProfileFormSubmit = (userData) => {
       formProfile.close();
     })
     .catch((err) => {
+      formValidators['edit-profile'].enableSubmitButton();
       console.log(err);
     })
     .finally(() => formProfile.loadingButtonText('Сохранить'));
@@ -202,15 +203,17 @@ const userProfileInfo = new UserInfo(profileNameSelector, profileInfoSelector, a
 // AVATAR
 
 const handleAvatarFormSubmit = (formData) => {
+  formValidators['update-avatar'].disableSubmitButton();
   formUpdateAvatar.loadingButtonText('Сохранение...');
   api
     .editAvatar(formData)
     .then((avatar) => {
       userProfileInfo.setUserAvatar({ avatar: avatar.avatar });
-
+      console.log('avatar');
       formUpdateAvatar.close();
     })
     .catch((err) => {
+      formValidators['update-avatar'].enableSubmitButton();
       console.log(err);
     })
     .finally(() => formUpdateAvatar.loadingButtonText('Сохранить'));
@@ -243,6 +246,7 @@ btnEditProfile.addEventListener('click', () => {
 });
 
 btnPlaceAdd.addEventListener('click', () => {
+  formValidators['add-place'].resetValidation();
   formPlace.open();
 });
 
